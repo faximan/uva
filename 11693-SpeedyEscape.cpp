@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <iterator>
 #include <stdio.h>
+#include <cstring>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ using namespace std;
 #define INF 0x7FFFFFFF
 
 #define ii pair<int, int>
+#define vi vector<int>
 
 int n, m, e, p, b;
 
@@ -26,11 +28,11 @@ bool can_use[MAX_N];
 
 bool visited[MAX_N];
 
-vector<int> ssp;
-vector<int> ssb;
+vi ssp;
+vi ssb;
 
-vector<int> SSSP(int s) {
-  vector<int> dist(n, INF);
+vi SSSP(int s) {
+  vi dist(n, INF);
   dist[s] = 0;
 
   priority_queue< ii, vector<ii>, greater<ii> > pq;
