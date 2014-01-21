@@ -107,7 +107,7 @@ int solve(string s, string* out) {
   int best = INF;
   string best_string = "";
 
-  for (int i = s.length(); i > 0; i--) {
+  for (int i = min(10, (int)s.length()); i > 0; i--) {
     string first = s.substr(0, i);
     int d = dist(first, &converted);
     if (d == -1 || d >= best) continue;
