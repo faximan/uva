@@ -13,8 +13,7 @@
 using namespace std;
 
 #define MAX_N 101
-#define EPS 1e-8
-#define MAX_V 1000000.0
+#define EPS 1e-9
 #define INF 0x7FFFFFFF
 
 #define ii pair<int, int>
@@ -78,7 +77,7 @@ double solve() {
   if (e == 1 && exits.count(p)) return -1;
 
   double lower = 0.000001;
-  double upper = MAX_V;
+  double upper = INF;
 
   while (lower < upper && (upper - lower) >= EPS) {
     double speed = (lower + upper) / 2.0;
@@ -87,7 +86,10 @@ double solve() {
     for (int i = 0; i < n; i++) {
       double time_p = (double)ssp[i] / 160.0;
       double time_b = (double)ssb[i] / speed;
-      if ( time_p <= time_b ) can_use[i] = false;
+
+      if ( time_p <= time_b ) {
+	can_use[i] = false;
+      }
     }
    
     if (path_exits()) {
@@ -96,7 +98,7 @@ double solve() {
       lower = speed;
     }
   }
-  return (lower < MAX_V-1) ? lower : -1;
+  return (lower < INF-1) ? lower : -1;
 }
 
 int main() {
@@ -127,7 +129,7 @@ int main() {
     ssb = SSSP(b);
 
     double res = solve();
-    if (res < 1) {
+    if (res < 0.0) {
       printf("IMPOSSIBLE\n");
     }
     else
