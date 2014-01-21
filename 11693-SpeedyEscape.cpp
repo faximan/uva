@@ -14,7 +14,7 @@ using namespace std;
 
 #define MAX_N 101
 #define EPS 1e-8
-#define MAX_V 10000.0
+#define MAX_V 1000000.0
 #define INF 0x7FFFFFFF
 
 #define ii pair<int, int>
