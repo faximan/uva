@@ -69,12 +69,6 @@ string int_to_string(int i) {
 }
 
 int dist(const string& s, string* converted) {
-  if (dp.count(s)) {
-    pair<int, string>& p = dp[s];
-    *converted = p.second;
-    return p.first;
-  }
-
   *converted = translate[s];
   map<string, int>& v = m[*converted];
 
@@ -90,8 +84,6 @@ int dist(const string& s, string* converted) {
 }
 
 int solve(const string& s, string* out) {
-  if (!s.length()) return 0;
-
   if (dp.count(s)) {
     pair<int, string>& p = dp[s];
     *out = p.second;
@@ -101,14 +93,14 @@ int solve(const string& s, string* out) {
   string converted;
   int best = INF;
   string best_string;
-
+  
   for (int i = min(10, (int)s.length()); i > 0; i--) {
     const string first = s.substr(0, i);
     if (!translate.count(first))
       continue;
 
     int d = dist(first, &converted);
-    if (d >= best) continue;
+    if (d + 1 + (s.length()-i) >= best) continue;
     
     if (i == s.length()) {
       best = d;
@@ -140,7 +132,7 @@ int main() {
       string s;
       cin >> s;
       map<string, int>& temp = m[convert(s)];
-      temp.insert({s, temp.size()});
+      temp.insert( {s, temp.size()} );
     }
     int q;
     cin >> q;
