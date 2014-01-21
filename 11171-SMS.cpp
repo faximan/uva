@@ -20,7 +20,7 @@ using namespace std;
 #define ii pair<int, int>
 #define vi vector<int>
 
-map<string, vector<string> > m;
+map<string, map<string, int> > m;
 
 map<char, char> dict = {
   {'a','2'},
@@ -52,13 +52,15 @@ map<char, char> dict = {
 };
 
 map<string, pair<int, string> > dp;
+map<string, string> cache_converted;
 
 string convert(string s) {
+  if (cache_converted.count(s)) return cache_converted[s];
   string tr = "";
   for (int j = 0; j < s.length(); j++) {
     tr += dict[s[j]];
   }
-  return tr;
+  return cache_converted[s] = tr;
 }
 
 string int_to_string(int i) {
@@ -75,23 +77,21 @@ int dist(const string& s, string* converted) {
   }
 
   *converted = convert(s);
+
   if (!m.count(*converted)) return -1;
 
-  const vector<string>& v = m[*converted];
-  for (int i = 0; i < v.size(); i++) {
-    if (s == v[i]) {
-      int down = i;
-      int up = v.size() - i;
+  map<string, int>& v = m[*converted];
+  if (!v.count(s)) return -1;
 
-      int best = min(down, up);
-      if (best == 0) return s.length();
+  int down = v[s];
+  int up = v.size() - down;
+  int best = min(down, up);
 
-      *converted += (down <= up) ? 'U' : 'D' ;
-      *converted += '(' + int_to_string(best) + ')';
-      return s.length() + best;
-    }
-  }
-  return -1; // Error.
+  if (best == 0) return s.length();
+
+  *converted += (down <= up) ? 'U' : 'D' ;
+  *converted += '(' + int_to_string(best) + ')';
+  return s.length() + best;
 }
 
 int solve(string s, string* out) {
@@ -112,17 +112,20 @@ int solve(string s, string* out) {
     int d = dist(first, &converted);
     if (d == -1 || d >= best) continue;
     
-    string second = s.substr(i, s.length()-i);
-    string sec_converted= "";
-    int rec = solve(second, &sec_converted);
+    if (i == s.length()) {
+      if (d < best) {
+	best = d;
+	best_string = converted;
+      }
+    } else {
+      string second = s.substr(i, s.length()-i);
+      string sec_converted= "";
+      int rec = solve(second, &sec_converted);
 
-    if (rec == 0 && d < best) {
-      best = d;
-      best_string = converted;
-    }
-    else if (rec + 1 + d < best) {
-      best = rec + 1 + d;
-      best_string = converted + 'R' + sec_converted;
+      if (rec + 1 + d < best) {
+	best = rec + 1 + d;
+	best_string = converted + 'R' + sec_converted;
+      }
     }
   }
   
@@ -139,7 +142,8 @@ int main() {
     for (int i = 0; i < ds; i++) {
       string s;
       cin >> s;
-      m[convert(s)].push_back(s);
+      map<string, int>& temp = m[convert(s)];
+      temp.insert({s, temp.size()});
     }
     int q;
     cin >> q;
