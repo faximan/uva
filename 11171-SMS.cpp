@@ -15,7 +15,7 @@ using namespace std;
 
 #define MAX_N 101
 #define EPS 1e-9
-#define INF 0x7FFFFFFF
+#define INF 0x3FFFFFFF
 
 #define ii pair<int, int>
 #define vi vector<int>
@@ -52,15 +52,14 @@ const vector<char> dict = {
 };
 
 map<string, pair<int, string> > dp;
-map<string, string> cache_converted;
+map<string, string> translate;
 
-string& convert(const string& s) {
-  if (cache_converted.count(s)) return cache_converted[s];
+string convert(const string& s) {
   string tr = "";
   for (int j = 0; j < s.length(); j++) {
     tr += dict[s[j]-'a'];
   }
-  return cache_converted[s] = tr;
+  return translate[s] = tr;
 }
 
 string int_to_string(int i) {
@@ -76,12 +75,8 @@ int dist(const string& s, string* converted) {
     return p.first;
   }
 
-  *converted = convert(s);
-
-  if (!m.count(*converted)) return -1;
-
+  *converted = translate[s];
   map<string, int>& v = m[*converted];
-  if (!v.count(s)) return -1;
 
   int down = v[s];
   int up = v.size() - down;
@@ -105,19 +100,22 @@ int solve(const string& s, string* out) {
 
   string converted;
   int best = INF;
-  string best_string = "";
+  string best_string;
 
   for (int i = min(10, (int)s.length()); i > 0; i--) {
-    string first = s.substr(0, i);
+    const string first = s.substr(0, i);
+    if (!translate.count(first))
+      continue;
+
     int d = dist(first, &converted);
-    if (d == -1 || d >= best) continue;
+    if (d >= best) continue;
     
     if (i == s.length()) {
       best = d;
       best_string = converted;
     } else {
       string second = s.substr(i, s.length()-i);
-      string sec_converted= "";
+      string sec_converted;
       int rec = solve(second, &sec_converted);
 
       if (rec + 1 + d < best) {
@@ -149,7 +147,7 @@ int main() {
     for (int i = 0; i< q; i++) {
       string s;
       cin >> s;
-      string out = "";
+      string out;
       solve(s, &out);
       cout << out << endl;
     }
