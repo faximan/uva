@@ -71,7 +71,10 @@ string int_to_string(int i) {
 
 int solve(int idx, trie_node* cur, string& out, bool first) {
   if (cur == NULL) return INF;
-  if (first && dp[idx].second != -1) return dp[idx].second;
+  if (first && dp[idx].second != -1) {
+    out = dp[idx].first;
+    return dp[idx].second;
+  }
 
   int best;
   string best_string;
@@ -113,6 +116,7 @@ void appendUD(trie_node* cur) {
     cur->print += '(' + int_to_string(best) + ')';
     cur->order = best;
   }
+  cur->order += cur->print.length();
 }
 
 void delete_mem(trie_node* cur) {
@@ -166,6 +170,7 @@ int main() {
       string res;
       solve(0, root->child[s[0] - 'a'], res, true);
       printf("%s\n", res.c_str());
+      //cout << dp[0].second << endl;
     }
     delete_mem(root);
 
