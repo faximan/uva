@@ -73,6 +73,12 @@ int main() {
 
     for (int i = 0; i < 101; i++) {
       for (int a = 0; a < n; a++) {
+
+	if (i == 0 && a > 0 && stop[a][i]) {
+	  AdjList[0].push_back( {100 * a, 0} );
+	  AdjList[100 * a].push_back( {0, 0} );
+	}
+
 	for (int b = a+1; b < n; b++) {
 	  if (stop[a][i] && stop[b][i]) {
 	    int time = (i == 0) ? 0 : 60;
