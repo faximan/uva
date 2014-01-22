@@ -13,14 +13,7 @@
 
 using namespace std;
 
-#define MAX_N 101
-#define EPS 1e-9
-#define INF 0x3FFFFFFF
-
-#define ii pair<int, int>
-#define vi vector<int>
-
-map<string, map<string, int> > m;
+map<string, int> key_to_num;
 
 const vector<char> dict = {
   '2',
@@ -51,16 +44,22 @@ const vector<char> dict = {
   '9'
 };
 
-map<string, pair<int, string> > dp;
-map<string, string> translate;
-
-string convert(const string& s) {
-  string tr = "";
-  for (int j = 0; j < s.length(); j++) {
-    tr += dict[s[j]-'a'];
+struct trie_node {
+  trie_node() {
+    for (int i = 0; i < 30; i++) {
+      child[i] = NULL;
+    }
+    print = "";
+    order = -1;
   }
-  return translate[s] = tr;
-}
+  int order;
+  string print;
+  trie_node* child[30];
+};
+
+trie_node* root;
+pair<string, int> dp[250002];
+string s;
 
 string int_to_string(int i) {
   stringstream s;
@@ -68,81 +67,100 @@ string int_to_string(int i) {
   return s.str();
 }
 
-int dist(const string& s, string* converted) {
-  *converted = translate[s];
-  map<string, int>& v = m[*converted];
+#define INF 0x3FFFFFFF
 
-  int down = v[s];
-  int up = v.size() - down;
-  int best = min(down, up);
+int solve(int idx, trie_node* cur, string& out, bool first) {
+  if (cur == NULL) return INF;
+  if (first && dp[idx].second != -1) return dp[idx].second;
 
-  if (best == 0) return s.length();
-
-  *converted += (down <= up) ? 'U' : 'D' ;
-  *converted += '(' + int_to_string(best) + ')';
-  return s.length() + best;
-}
-
-int solve(const string& s, string* out) {
-  if (dp.count(s)) {
-    pair<int, string>& p = dp[s];
-    *out = p.second;
-    return p.first;
-  }
-
-  string converted;
-  int best = INF;
+  int best;
   string best_string;
-  
-  for (int i = min(10, (int)s.length()); i > 0; i--) {
-    const string first = s.substr(0, i);
-    if (!translate.count(first))
-      continue;
 
-    int d = dist(first, &converted);
-    if (d + 1 + (s.length()-i) >= best) continue;
-    
-    if (i == s.length()) {
-      best = d;
-      best_string = converted;
-    } else {
-      string second = s.substr(i, s.length()-i);
-      string sec_converted;
-      int rec = solve(second, &sec_converted);
+  // If this is the last letter
+  if (idx == s.length() - 1) {
+    if (cur->order == -1) return INF;
 
-      if (rec + 1 + d < best) {
-	best = rec + 1 + d;
-	best_string = converted + 'R' + sec_converted;
+    best = cur->order;
+    best_string = cur->print;
+  } else {
+    // Keep on
+    best = solve(idx + 1, cur->child[s[idx + 1] - 'a'], best_string, false);
+
+    // Compare to stop here if ok
+    if (cur->order != -1) {
+      string sec_string;
+      int stop_here = solve(idx + 1, root->child[s[idx + 1] - 'a'], sec_string, true);
+
+      stop_here += 1 + cur->order;
+      if(stop_here < best) {
+	best = stop_here;
+	best_string = cur->print + 'R' + sec_string;
       }
     }
   }
-  
-  dp[s] = {best, best_string};
-  *out = best_string;
+
+  if ( first ) dp[idx] = { best_string,  best };
+  out = best_string;
   return best;
+}
+
+void appendUD(trie_node* cur) {
+  if (cur->order != 0) {
+    int up = cur->order;
+    int down = key_to_num[cur->print] - up;
+    int best = min(up, down);
+    cur->print += down < up ? 'D' : 'U';
+    cur->print += '(' + int_to_string(best) + ')';
+    cur->order = best;
+  }
 }
 
 int main() {
   int ds;
   while (cin >> ds) {
     if (!ds) break;
-    m.clear();
-    dp.clear();
+
+    root = new trie_node();
+    key_to_num.clear();
+
+    vector<trie_node*> nodes;
     for (int i = 0; i < ds; i++) {
-      string s;
       cin >> s;
-      map<string, int>& temp = m[convert(s)];
-      temp.insert( {s, temp.size()} );
+      trie_node* cur = root;
+      string key = "";
+      for (int j = 0; j < s.length(); j++) {
+	const int idx = s[j] - 'a';
+	key += dict[idx];
+	if (cur->child[idx] == NULL) cur->child[idx] = new trie_node();
+	cur = cur->child[idx];
+      }
+      if (key_to_num.count(key)) {
+	cur->order = key_to_num[key]++;
+      } else {
+	cur->order = 0;
+	key_to_num[key] = 1;
+      }
+      cur->print = key;
+      nodes.push_back(cur);
     }
+
+    for (trie_node *tn : nodes) {
+      appendUD(tn);
+    }
+
     int q;
     cin >> q;
-    for (int i = 0; i< q; i++) {
-      string s;
+    for (int i = 0; i < q; i++) {
       cin >> s;
-      string out;
-      solve(s, &out);
-      cout << out << endl;
+      for (int j = 0; j < s.length()+1; j++) {
+	dp[j] = {"",-1};
+      }
+
+      string res;
+      solve(0, root->child[s[0] - 'a'], res, true);
+      printf("%s\n", res.c_str());
     }
+
   }
   return 0;
 }
