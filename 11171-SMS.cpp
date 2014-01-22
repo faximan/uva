@@ -110,11 +110,12 @@ void appendUD(trie_node* cur) {
     int up = cur->order;
     int down = key_to_num[cur->print] - up;
     int best = min(up, down);
+    cur->order = best + cur->print.length();
     cur->print += down < up ? 'D' : 'U';
     cur->print += '(' + int_to_string(best) + ')';
-    cur->order = best;
+  } else {
+    cur->order += cur->print.length();
   }
-  cur->order += cur->print.length();
 }
 
 int main() {
@@ -167,7 +168,7 @@ int main() {
       	res += cur.first->print + 'R';
 	cur = dp[cur.second].first;
       }
-
+      //cout << dp[0].second << endl;
       printf("%s\n", res.substr(0, res.length()-1).c_str());
     }
   }
