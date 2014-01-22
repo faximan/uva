@@ -91,7 +91,7 @@ double solve() {
 	can_use[i] = false;
       }
     }
-   
+
     if (path_exits()) {
       upper = speed;
     } else {
