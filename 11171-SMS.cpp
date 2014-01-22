@@ -168,7 +168,7 @@ int main() {
       }
 
       string res;
-      solve(0, root->child[s[0] - 'a'], res, true);
+      //  solve(0, root->child[s[0] - 'a'], res, true);
       printf("%s\n", res.c_str());
       //cout << dp[0].second << endl;
     }
