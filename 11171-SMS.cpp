@@ -58,7 +58,7 @@ struct trie_node {
 };
 
 trie_node* root;
-pair<string, int> dp[250002];
+pair<pair<trie_node*, int>, int> dp[250002];
 string s;
 
 string int_to_string(int i) {
@@ -70,14 +70,19 @@ string int_to_string(int i) {
 #define INF 0x3FFFFFFF
 
 void solve() {
-  for (int idx = s.length() - 1; idx >= 0; idx--) {
-    trie_node* cur = root->child[s[idx] - 'a'];
-    if (!cur) continue;
+  int best, pos;
 
-    int best = INF;
-    string best_string;
-    int pos = idx;
+  trie_node* next_t;
+  int next_d;
+
+  for (int idx = s.length() - 1; idx >= 0; idx--) {
+    best = INF;
+    pos = idx;
+    trie_node* cur = root;
     while (1) {
+      cur = cur->child[s[pos] - 'a'];
+      if (cur == NULL) break;
+
       if (cur->order != -1) {
 	int sec = cur->order;
 	if (pos != s.length() - 1) {
@@ -86,17 +91,16 @@ void solve() {
 
 	if (sec < best) {
 	  best = sec;
-	  best_string = cur->print;
-	  if (sec != cur->order) best_string += 'R' + dp[pos + 1].first;
+
+	  next_t = cur;
+	  next_d = pos+1;
 	}
       }
       pos++;
       if (pos == s.length()) break;
-      if (cur->child[s[pos] - 'a'] == NULL) break;
-      cur = cur->child[s[pos] - 'a'];
     }
     if (best < INF) {
-      dp[idx] = {best_string, best};
+      dp[idx] = { {next_t, next_d}, best};
     }
   }
 }
@@ -111,13 +115,6 @@ void appendUD(trie_node* cur) {
     cur->order = best;
   }
   cur->order += cur->print.length();
-}
-
-void delete_mem(trie_node* cur) {
-  for (int i = 0; i < 30; i++) {
-    if (cur->child[i]) delete_mem(cur->child[i]);
-  }
-  delete cur;
 }
 
 int main() {
@@ -158,13 +155,21 @@ int main() {
     for (int i = 0; i < q; i++) {
       cin >> s;
       for (int j = 0; j < s.length()+1; j++) {
-	dp[j] = {"", INF};
+	dp[j] = {{NULL, INF}, INF};
       }
 
       solve();
-      printf("%s\n", dp[0].first.c_str());
+      string res = "";
+      pair<trie_node *, int>& cur = dp[0].first;
+
+      while (1) {
+	if (cur.first == NULL) break;
+      	res += cur.first->print + 'R';
+	cur = dp[cur.second].first;
+      }
+
+      printf("%s\n", res.substr(0, res.length()-1).c_str());
     }
-    delete_mem(root);
   }
   return 0;
 }
