@@ -69,42 +69,36 @@ string int_to_string(int i) {
 
 #define INF 0x3FFFFFFF
 
-int solve(int idx, trie_node* cur, string& out, bool first) {
-  if (cur == NULL) return INF;
-  if (first && dp[idx].second != -1) {
-    out = dp[idx].first;
-    return dp[idx].second;
-  }
+void solve() {
+  for (int idx = s.length() - 1; idx >= 0; idx--) {
+    trie_node* cur = root->child[s[idx] - 'a'];
+    if (!cur) continue;
 
-  int best;
-  string best_string;
+    int best = INF;
+    string best_string;
+    int pos = idx;
+    while (1) {
+      if (cur->order != -1) {
+	int sec = cur->order;
+	if (pos != s.length() - 1) {
+	  sec += 1 + dp[pos + 1].second;
+	}
 
-  // If this is the last letter
-  if (idx == s.length() - 1) {
-    if (cur->order == -1) return INF;
-
-    best = cur->order;
-    best_string = cur->print;
-  } else {
-    // Keep on
-    best = solve(idx + 1, cur->child[s[idx + 1] - 'a'], best_string, false);
-
-    // Compare to stop here if ok
-    if (cur->order != -1) {
-      string sec_string;
-      int stop_here = solve(idx + 1, root->child[s[idx + 1] - 'a'], sec_string, true);
-
-      stop_here += 1 + cur->order;
-      if(stop_here < best) {
-	best = stop_here;
-	best_string = cur->print + 'R' + sec_string;
+	if (sec < best) {
+	  best = sec;
+	  best_string = cur->print;
+	  if (sec != cur->order) best_string += 'R' + dp[pos + 1].first;
+	}
       }
+      pos++;
+      if (pos == s.length()) break;
+      if (cur->child[s[pos] - 'a'] == NULL) break;
+      cur = cur->child[s[pos] - 'a'];
+    }
+    if (best < INF) {
+      dp[idx] = {best_string, best};
     }
   }
-
-  if ( first ) dp[idx] = { best_string,  best };
-  out = best_string;
-  return best;
 }
 
 void appendUD(trie_node* cur) {
@@ -164,16 +158,13 @@ int main() {
     for (int i = 0; i < q; i++) {
       cin >> s;
       for (int j = 0; j < s.length()+1; j++) {
-	dp[j] = {"",-1};
+	dp[j] = {"", INF};
       }
 
-      string res;
-      //  solve(0, root->child[s[0] - 'a'], res, true);
-      printf("%s\n", res.c_str());
-      //cout << dp[0].second << endl;
+      solve();
+      printf("%s\n", dp[0].first.c_str());
     }
     delete_mem(root);
-
   }
   return 0;
 }
