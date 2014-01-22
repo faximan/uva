@@ -115,6 +115,13 @@ void appendUD(trie_node* cur) {
   }
 }
 
+void delete_mem(trie_node* cur) {
+  for (int i = 0; i < 30; i++) {
+    if (cur->child[i]) delete_mem(cur->child[i]);
+  }
+  delete cur;
+}
+
 int main() {
   int ds;
   while (cin >> ds) {
@@ -160,6 +167,7 @@ int main() {
       solve(0, root->child[s[0] - 'a'], res, true);
       printf("%s\n", res.c_str());
     }
+    delete_mem(root);
 
   }
   return 0;
