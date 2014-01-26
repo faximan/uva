@@ -28,7 +28,7 @@ struct Point {
   bool operator<(const Point& rhs) const { return x < rhs.x; }
 };
 
-Point p[6000];
+Point p[30000];
 
 int main() {
   int cc;
@@ -40,7 +40,7 @@ int main() {
       int k;
       cin >> k;
       if (!k) break;
-      int x, y, dx, dy;
+      int x, y, dx = 0, dy = 0;
       cin >> x >> y;
       if (k > 1) cin >> dx >> dy;
       for (int i = 0; i < k; i++) {
