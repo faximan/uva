@@ -71,8 +71,8 @@ int main() {
       }
 
       for (int i = 0; i < pos; i++) {
-        int newx = p[i].y;
-        int newy = w - p[i].x;
+        int newx = w - p[i].y;
+        int newy = p[i].x;
         p[i].x = newx;
         p[i].y = newy;
       }
