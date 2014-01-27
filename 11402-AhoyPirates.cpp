@@ -54,18 +54,6 @@ int updateOne(char ch, int p) {
     diff = now - st[p];
     st[p] = now;
   }
-  // const int pl = left(p);
-  // const int pr = right(p);
-
-  // if (pl <= num_nodes) {
-  //   if (lazy[pl] != 'A') updateOne(lazy[pl], pl);
-  //   lazy[pl] = ch;
-  // }
-  // if (pr <= num_nodes) {
-  //   if (lazy[pr] != 'A') updateOne(lazy[pr], pr);
-  //   lazy[pr] = ch;
-  // }
-
   return diff;
 }
 
@@ -79,8 +67,7 @@ char ppp(char old, char nnn) {
     if (old == 'A') return 'I';
   }
   assert(false);
-return '?';
-
+  return '?';
 }
 
 int update(char ch, int p, int L, int R, int a, int b, char over) {
@@ -89,11 +76,6 @@ int update(char ch, int p, int L, int R, int a, int b, char over) {
     lazy[p] = ppp(lazy[p], over);
   }
   if (a > R || b < L) return 0;
-
-  // if (lazy[p] != 'A') {
-  //   updateOne(lazy[p], p);
-  //   lazy[p] = 'A';
-  // }
 
   if (L >= a && R <= b) {
     const int ans = updateOne(ch, p);
@@ -114,11 +96,6 @@ int query(int p, int L, int R, int a, int b, char over) {
     lazy[p] = ppp(lazy[p], over);
   }
   if (a > R || b < L) return 0;
-
-  // if (lazy[p] != 'A') {
-  //   updateOne(lazy[p], p);
-  //   lazy[p] = 'A';
-  // }
 
   if (L >= a && R <= b)
     return st[p];

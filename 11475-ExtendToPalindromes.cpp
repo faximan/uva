@@ -16,7 +16,7 @@ using namespace std;
 #define INF 0x7FFFFFFF
 
 char T [210000];
-char P [210000];
+char P [110000];
 int b[110000], n, m;
 
 void kmpP() {
