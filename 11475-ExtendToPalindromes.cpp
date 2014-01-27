@@ -9,14 +9,15 @@
 #include <iterator>
 #include <stdio.h>
 #include <cstring>
+#include <cassert>
 
 using namespace std;
 
-char s[210000];
-char buffer[110000];
+char s     [1000000];
+char buffer[1000000];
 
 int main() {
-  while (scanf("%s", s) != EOF) {
+  while (scanf("%s", s) == 1) {
     int l = strlen(s) - 1;
     int back = l;
     int runner = 0;
@@ -27,22 +28,19 @@ int main() {
         runner++;
         back--;
       } else {
-        if (back == l) {
-          buffer[bp] = s[bp];
-          bp++;
+        if (back == l)
           runner++;
-        } else {
-          for (; bp < runner; bp++) {
-            buffer[bp] = s[bp];
-          }
+        for (; bp < runner; bp++) {
+          buffer[bp] = s[bp];
         }
         back = l;
       }
     }
 
     l++;
-    for (int i = bp-1; i >= 0; i--) {
-      s[l++] = buffer[i];
+    for (int i = bp - 1; i >= 0; i--) {
+      s[l] = buffer[i];
+      l++;
     }
     s[l] = '\0';
     printf("%s\n", s);
