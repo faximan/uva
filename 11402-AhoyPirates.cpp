@@ -14,10 +14,7 @@
 using namespace std;
 
 #define MAX_N 1024100
-#define EPS 1e-9
-#define INF 0x7FFFFFFF
 
-#define ii pair<int, int>
 #define vi vector<int>
 
 char s[MAX_N];
@@ -26,7 +23,7 @@ int n, num_nodes;
 char lazy[4 * MAX_N];
 int size[4 * MAX_N];
 
-vi st, A;
+vi st;
 
 int left(int p) { return p << 1; }
 int right(int p) { return (p << 1) + 1; }
@@ -114,19 +111,21 @@ int query(int p, int L, int R, int a, int b) {
 
 int main() {
   int cc, m, t, q, a, b;
-  string temp;
+  char temp[60];
   char ch;
 
-  cin >> cc;
+  scanf("%d\n", &cc);
   for (int c = 1; c <= cc; c++) {
     printf("Case %d:\n", c);
-    cin >> m;
+    scanf("%d\n", &m);
     n = 0;
     num_nodes = 0;
     while (m--) {
-      cin >> t >> temp;
+      scanf("%d\n", &t);
+      scanf("%s\n", temp);
+      const int len = strlen(temp);
       while (t--) {
-        for (int i = 0; i < temp.length(); i++)
+        for (int i = 0; i < len; i++)
           s[n++] = temp[i];
       }
     }
@@ -138,10 +137,10 @@ int main() {
 
     build(1, 0, n-1);
 
-    cin >> q;
+    scanf("%d\n", &q);
     int num_s = 0;
     while (q--) {
-      cin >> ch >> a >> b;
+      scanf("%c %d %d\n", &ch, &a, &b);
       if (ch != 'S') {
         update(ch, 1, 0, n - 1, a, b);
       } else {
