@@ -13,37 +13,49 @@
 
 using namespace std;
 
-char s     [1000000];
-char buffer[1000000];
+#define INF 0x7FFFFFFF
+
+char T [110000];
+char P [110000];
+int b[110000], n, m;
+
+void kmpP() {
+  int i = 0, j = -1;
+  b[0] = -1;
+  while (i < m) {
+    while (j >= 0 && P[i] != P[j]) j = b[j];
+    i++;
+    j++;
+    b[i] = j;
+  }
+}
+
+int kmpS() {
+  int i = 0, j = 0;
+  int best = 0;
+  while (i < n) {
+    while (j >= 0 && T[i] != P[j]) j = b[j];
+    i++;
+    j++;
+    best = max(best, i-j);
+    if (j == m) {
+      j = b[j];
+    }
+  }
+  return best;
+}
 
 int main() {
-  while (scanf("%s", s) == 1) {
-    int l = strlen(s) - 1;
-    int back = l;
-    int runner = 0;
-
-    int bp = 0;
-    while (runner < back) {
-      if (s[runner] == s[back]) {
-        runner++;
-        back--;
-      } else {
-        if (back == l)
-          runner++;
-        for (; bp < runner; bp++) {
-          buffer[bp] = s[bp];
-        }
-        back = l;
-      }
-    }
-
-    l++;
-    for (int i = bp - 1; i >= 0; i--) {
-      s[l] = buffer[i];
-      l++;
-    }
-    s[l] = '\0';
-    printf("%s\n", s);
+  while (scanf("%s", T) != EOF) {
+    m = n = strlen(T);
+    for (int i = 0; i < n; i++)
+      P[n-i-1] = T[i];
+    kmpP();
+    int t = kmpS();
+    for (int i = 0; i < t; i++)
+      T[n++] = T[t-i-1];
+    T[n] = '\0';
+    printf("%s\n", T);
   }
   return 0;
 }
