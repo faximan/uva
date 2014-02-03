@@ -19,7 +19,7 @@ long long a,b,c, n;
 long long A, B, C;
 
 bool solve() {
-  for (a = -min(sqrt(B), sqrt(C)/2); a < -1; a++) {
+  for (a = -min(sqrt(B), sqrt(C)); a < -1; a++) {
     if ( (B % -a) != 0) continue;
     const long long aa = a * a;
 
@@ -44,7 +44,6 @@ bool solve() {
       c = A - a - b;
       if (c <= b) break;
       if (b * c > kvot) break;
-
 
       const long long bb = b * b;
       if (aa + bb > C) break;
