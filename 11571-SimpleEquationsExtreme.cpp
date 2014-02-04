@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <cstring>
 #include <cassert>
+#include <cmath>
+#include <ctgmath>
 
 using namespace std;
 
@@ -32,14 +34,14 @@ inline bool IsInteger(long double n)
 
 inline bool isSolution() {
   c = A - a - b;
-  if (IsInteger(b) && b > a && c > b) {
+  if (b > a && c > b && IsInteger(b)) {
     if ( myabs(C - a*a - b*b - c*c) < EPS) return true;
   }
   return false;
 }
 
 bool calculate_b(const long double& x, long double& kvot, long double& root) {
-  kvot = (x - A) / 2;
+  kvot = (x - A) / 2.0;
   const long double sqkvot = kvot * kvot;
   const long double BbyX = B/x;
   if (BbyX >= sqkvot) return false;
@@ -48,7 +50,7 @@ bool calculate_b(const long double& x, long double& kvot, long double& root) {
 }
 
 bool solve() {
-  const long double cube_root = floor(pow(B, 0.34)) + 2;
+  const long double cube_root = min((long double)floor(sqrtl(C)), (long double)floor((long double)pow(B, (long double)0.34))) + 2;
   long double kvot, root;
 
   for (long double i = -cube_root; i < cube_root; i += 1.0) {
@@ -62,11 +64,11 @@ bool solve() {
       a = -kvot - root;
       if (isSolution()) return true;
     } else if (i > 0) {
-      a = i;
-      b = -kvot + root;
-      if (isSolution()) return true;
-      b = -kvot - root;
-      if (isSolution()) return true;
+       a = i;
+       b = -kvot + root;
+       if (isSolution()) return true;
+       b = -kvot - root;
+       if (isSolution()) return true;
     }
   }
   return false;
