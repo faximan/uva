@@ -20,11 +20,11 @@ using namespace std;
 #define vi vector<int>
 
 int main() {
-  int t;
+  long long t;
   while (cin >> t) {
-    int n1 = 1;
-    int n2 = 2;
-    int cnt = 1;
+    long long n1 = 1;
+    long long n2 = 2;
+    long long cnt = 1;
 
     while (n2 <= t) {
       n1 = n2;
