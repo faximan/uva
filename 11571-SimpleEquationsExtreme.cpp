@@ -19,13 +19,9 @@ using namespace std;
 
 long double a, b, c, A, B, C;
 
-inline long double myabs(long double n) {
-  return n < 0 ? -n : n;
-}
-
 inline bool isSolution() {
   c = A - a - b;
-  return b > a && c > b && myabs(C - a*a - b*b - c*c) < EPS;
+  return b > a && c > b && abs(C - a*a - b*b - c*c) < EPS;
 }
 
 bool calculate_b(const long double& x, long double& kvot, long double& root) {
