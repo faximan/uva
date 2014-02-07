@@ -13,7 +13,7 @@
 
 using namespace std;
 
-vector<int> v(10000);
+vector<int> v(100000);
 
 int main() {
   int t;
@@ -33,12 +33,12 @@ int main() {
     while (1) {
       getline(cin, s);
       if (s == "") break;
-      char c;
+      char d;
       int a, b;
       stringstream ss(s);
-      ss >> c >> a >> b;
+      ss >> d >> a >> b;
 
-      if (c== 'q') {
+      if (d == 'q') {
         if (v[a-1] == v[b-1] && v[a-1] != -1) good++;
         else bad++;
       } else {
@@ -46,7 +46,7 @@ int main() {
           v[a-1] = v[b-1];
         else if (v[a-1] != -1 && v[b-1] == -1)
           v[b-1] = v[a-1];
-        if (v[a-1] == -1 && v[b-1] == -1) {
+        else if (v[a-1] == -1 && v[b-1] == -1) {
           v[a-1] = nbr_sec;
           v[b-1] = nbr_sec;
           nbr_sec++;
