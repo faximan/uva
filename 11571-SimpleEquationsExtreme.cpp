@@ -17,7 +17,8 @@ using namespace std;
 
 #define EPS 1e-12
 
-long double a, b, c, A, B, C;
+long long A, B, C;
+long double a, b, c;
 
 bool isSolution(const long double& aa, const long double& bb) {
   if (bb <= aa) return false;
@@ -28,7 +29,7 @@ bool isSolution(const long double& aa, const long double& bb) {
 }
 
 long double kvot, root;
-bool calculate_b(const long double& x, long double& b1, long double& b2) {
+bool calculate_b(const long long& x, long double& b1, long double& b2) {
   kvot = -(x - A) / 2.0;
   const long double sqkvot = kvot * kvot;
   const long double BbyX = B/x;
@@ -41,11 +42,11 @@ bool calculate_b(const long double& x, long double& b1, long double& b2) {
 }
 
 bool solve() {
-  const long double cube_root = floor(min(sqrtl(C)/2, pow(B, 0.34))) + 2;
+  const long long cube_root = min(sqrtl( (long double)C )/2, pow( (long double)B, 0.34)) + 2;
   long double b1, b2;
 
-  for (long double i = -cube_root; i < cube_root; i += 1.0) {
-    if (i == 0.0 || !calculate_b(i, b1, b2)) continue;
+  for (long long i = -cube_root; i < cube_root; i++) {
+    if (i == 0 || (B % i != 0) || !calculate_b(i, b1, b2)) continue;
 
     if (i < 0) {
       if (isSolution(b1, i))  return true;
@@ -62,9 +63,9 @@ int main() {
   int m;
   scanf("%d", &m);
   while (m--) {
-    scanf("%Lf %Lf %Lf", &A, &B, &C);
+    scanf("%llu %llu %llu", &A, &B, &C);
     if (solve()) {
-      printf("%0.Lf %0.Lf %0.LF\n", a+EPS, b+EPS, c+EPS);
+      printf("%0.Lf %0.Lf %0.Lf\n", a+EPS, b+EPS, c+EPS);
     } else
       printf("No solution.\n");
   }
