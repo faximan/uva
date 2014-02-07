@@ -19,39 +19,40 @@ using namespace std;
 
 long double a, b, c, A, B, C;
 
-inline bool isSolution() {
-  c = A - a - b;
-  return b > a && c > b && abs(C - a*a - b*b - c*c) < EPS;
+bool isSolution(const long double& aa, const long double& bb) {
+  if (bb <= aa) return false;
+  c = A - aa - bb;
+  const bool res = c > bb && abs(C - aa*aa - bb*bb - c*c) < EPS;
+  if (res) { b = bb; a = aa; }
+  return res;
 }
 
-bool calculate_b(const long double& x, long double& kvot, long double& root) {
-  kvot = (x - A) / 2.0;
+long double kvot, root;
+bool calculate_b(const long double& x, long double& b1, long double& b2) {
+  kvot = -(x - A) / 2.0;
   const long double sqkvot = kvot * kvot;
   const long double BbyX = B/x;
   if (BbyX > sqkvot) return false;
   root = sqrtl(sqkvot - BbyX);
+
+  b1 = kvot - root;
+  b2 = kvot + root;
   return true;
 }
 
 bool solve() {
   const long double cube_root = floor(min(sqrtl(C)/2, pow(B, 0.34))) + 2;
-  long double kvot, root;
+  long double b1, b2;
 
   for (long double i = -cube_root; i < cube_root; i += 1.0) {
-    if (!calculate_b(i, kvot, root)) continue;
+    if (i == 0.0 || !calculate_b(i, b1, b2)) continue;
 
     if (i < 0) {
-      b = i;
-      a = -kvot + root;
-      if (isSolution()) return true;
-      a = -kvot - root;
-      if (isSolution()) return true;
-    } else if (i > 0) {
-       a = i;
-       b = -kvot + root;
-       if (isSolution()) return true;
-       b = -kvot - root;
-       if (isSolution()) return true;
+      if (isSolution(b1, i))  return true;
+      if (isSolution(b2, i))  return true;
+    } else {
+      if (isSolution(i, b1)) return true;
+      if (isSolution(i, b2)) return true;
     }
   }
   return false;
