@@ -13,12 +13,7 @@
 
 using namespace std;
 
-#define MAX_N 101
-#define EPS 1e-9
-#define INF 0x7FFFFFFF
-
-#define ii pair<int, int>
-#define vi vector<int>
+vector<int> v(10000);
 
 int main() {
   int t;
@@ -29,7 +24,6 @@ int main() {
     first = false;
     int c;
     cin >> c;
-    vector<int> v(c);
     for (int i = 0; i < c; i++) v[i] = -1;
     int good = 0;
     int bad = 0;
@@ -45,7 +39,7 @@ int main() {
       ss >> c >> a >> b;
 
       if (c== 'q') {
-        if (v[a-1] == v[b-1]) good++;
+        if (v[a-1] == v[b-1] && v[a-1] != -1) good++;
         else bad++;
       } else {
         if (v[a-1] == -1 && v[b-1] != -1)
