@@ -19,9 +19,23 @@ using namespace std;
 #define ii pair<int, int>
 #define vi vector<int>
 
+int n, m;
+stirng s;
+
+vector<string> v;
+
 int main() {
-
-
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    cin >> s;
+    v.push_back(s);
+  }
+  cin >> m;
+  for (int i = 0; i < m; i++) {
+    cin >> s;
+    int res = solve(s);
+    cout << res << endl;
+  }
 
   return 0;
 }
