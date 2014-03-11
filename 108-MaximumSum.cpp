@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2011-11-30.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 
@@ -59,4 +59,4 @@ int main(){
             
     cout << m << endl;   
     return 0;
-}*/
+}

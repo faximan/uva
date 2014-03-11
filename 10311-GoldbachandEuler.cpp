@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-20.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <stdio.h> 
 #include <iostream>
 #include <string.h> 
@@ -89,4 +89,4 @@ int main()
 		} 
 	} 
 	return 0; 
-} */
+}

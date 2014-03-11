@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-14.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -27,4 +27,4 @@ int main()
 			cout << "No" << endl;
 	}
 	return 0;
-}*/
+}

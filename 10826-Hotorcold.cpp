@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-02.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <math.h>
 #include <cassert>
@@ -85,4 +85,3 @@ int main()
     
     return 0;
 }
-*/

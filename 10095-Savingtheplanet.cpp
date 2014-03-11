@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-17.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <math.h>
 #include <algorithm>
@@ -64,4 +64,4 @@ int main()
 		//printf("%.4f %.4f %.4f %.4f\n", maximum/2.0, (x1.x+x2.x)/2.0, (x1.y+x2.y)/2.0, (x1.z+x2.z)/2.0);
 	}
 	return 0;
-}*/
+}

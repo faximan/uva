@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-20.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <queue>
 
@@ -179,4 +179,4 @@ int main()
 			cout << "0" << endl;
 	}
 	return 0;
-}*/
+}

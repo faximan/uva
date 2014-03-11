@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-31.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -95,4 +95,4 @@ int main()
         cout << best << endl;           
     }
         return 0;
-}*/
+}

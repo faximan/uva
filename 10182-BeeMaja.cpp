@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-05.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 int varv, n , x, y;
 
@@ -78,4 +78,4 @@ int main()
         cout << x << " " << y << endl;
     }
     return 0;
-}*/
+}

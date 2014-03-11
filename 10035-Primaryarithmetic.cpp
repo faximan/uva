@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-/*#include <iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -42,4 +42,4 @@ int main(){
             cout <<res << " carry operations." << endl;
     }
     return 0;
-}*/
+}

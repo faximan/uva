@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -235,4 +235,4 @@ int main()
 		cout << endl;
 	}
 	return 0;
-}*/
+}

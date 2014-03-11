@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-28.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -46,4 +46,4 @@ int main()
     }
 
     return 0;
-}*/
+}

@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-11.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
@@ -53,4 +53,4 @@ int main()
 		cout << endl;
 	}
 	return 0;
-}*/
+}

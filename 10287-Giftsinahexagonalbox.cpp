@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-13.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <math.h>
 #include <stdio.h>
@@ -27,4 +27,4 @@ int main()
 		printf("%.10Lf %.10Lf %.10Lf %.10Lf\n", x1, x2, x3, x4);
 	}
 	return 0;
-}*/
+}

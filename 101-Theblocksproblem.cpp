@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2011-12-02.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 
@@ -101,4 +101,4 @@ int main(){
     }   
     
     return 0;    
-}*/
+}

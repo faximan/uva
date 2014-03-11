@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-29.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <stdio.h>
 #include <string.h>
@@ -70,4 +70,4 @@ int main()
 		printf("%lld\n", res);
 	}
     return 0;
-}*/
+}
