@@ -34,7 +34,7 @@ void reset(int i){
         }
     }
     newv.push_back(i);
-    v[ar[i]] = newv;   
+    v[ar[i]] = newv;
 }
 
 void pile(int a, int b){
@@ -53,19 +53,19 @@ void pile(int a, int b){
             v[ar[b]].push_back(v[olda][j]);
         }
     }
-    v[olda] = newv;   
+    v[olda] = newv;
 }
 
 
 int main(){
-    
+
     cin >> n;
-    
+
     for(int i = 0; i < n; i++){
         ar[i] = i;
         v[i].push_back(i);
     }
-    
+
     while(true)
     {
         string c1, c2;
@@ -75,7 +75,7 @@ int main(){
         cin >> a >> c2 >> b;
         if(a==b || ar[a] == ar[b])
             continue;
-        
+
         if(c1 == "move"){
             if(c2 == "onto"){
                 reset(b);
@@ -89,16 +89,16 @@ int main(){
                 reset(b);
             }
             pile(a,b);
-        }        
-    }   
-    
+        }
+    }
+
     for(int i = 0; i < n; i++){
         cout << i << ":";
         for(int j = 0; j < v[i].size(); j++){
             cout << " " << v[i][j];
         }
         cout << endl;
-    }   
-    
-    return 0;    
+    }
+
+    return 0;
 }

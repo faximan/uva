@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <math.h>
 #include <queue>
@@ -48,7 +48,7 @@ bool ShortestPath(int source, int dest)
 		prev[i] = -1; // -1 at end if not on the path to dest
 	}
 	cost[source] = 0;
-	
+
 	priority_queue<elem, vector<elem>, greater<elem> > pq;
 	pq.push(elem(0.0, source));
 	while(!pq.empty())
@@ -81,11 +81,11 @@ int main()
 		cin >> n;
 		if(n == -1)
 			break;
-		
+
 		numv = 1;
 		p[0].x = 0;
 		p[0].y = 5;
-		
+
 		for(int i = 0; i < n; i++)
 		{
 			cin >> d[i].x;
@@ -97,21 +97,21 @@ int main()
 			}
 			numv += 4;
 		}
-		
+
 		p[numv].x = 10;
 		p[numv++].y = 5;
-		
+
 		memset(weight, INF, sizeof(weight));
-		
+
 		for(int i = 0; i < numv; i++)
 			for(int j = i+1; j < numv; j++)
 			{
 				if(fabs(p[i].x - p[j].x) < EPS)
 					continue;
-				
+
 				double k = (p[j].y-p[i].y) / (p[j].x - p[i].x);
 				double m = p[j].y - k * p[j].x;
-				
+
 				bool ok = true;
 				for(int l = 0; l < n; l++)
 				{
@@ -121,7 +121,7 @@ int main()
 						if((y > 0 && y < d[l].y[0] + EPS) ||
 						   (y + EPS > d[l].y[1] && y < d[l].y[2] + EPS) ||
 						   (y + EPS > d[l].y[3] && y < 10 + EPS))
-							ok = false;						
+							ok = false;
 					}
 				}
 				if(ok)
@@ -130,6 +130,6 @@ int main()
 			}
 		ShortestPath(0, numv-1);
 		printf("%.2f\n", cost[numv-1]);
-	}	
+	}
 	return 0;
-}*/
+}

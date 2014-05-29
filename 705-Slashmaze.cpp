@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-21.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 
@@ -32,14 +32,14 @@ void flood_fill(int x, int y)
     if(a[x][y] != UNEXPLORED)
         return;
     a[x][y] = BLOCKED;
-    
+
     if(depth != -1)
         depth++;
-    
+
     flood_fill(x+1, y);
     flood_fill(x-1, y);
     flood_fill(x, y+1);
-    flood_fill(x, y-1);    
+    flood_fill(x, y-1);
 }
 
 int main()
@@ -52,7 +52,7 @@ int main()
         longest = 0;
         cin >> w >> h;
         if(w == 0) break;
-        
+
         for (int i = 0; i < 250; i++)
             for (int j = 0; j < 250; j++)
                 a[i][j] = UNEXPLORED;
@@ -60,7 +60,7 @@ int main()
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
                 char c;
-                cin >> c;               
+                cin >> c;
                 if(c == '\\')
                 {
                     a[i*3][j*3] = BLOCKED;
@@ -74,14 +74,14 @@ int main()
                 a[i*3+1][j*3+1] = BLOCKED;
             }
         }
-                
+
         for (int i = 0; i < h*3; i++) {
             for (int j = 0; j < w*3; j++) {
                 if(a[i][j] == UNEXPLORED)
                 {
                     depth = 0;
                     flood_fill(i,j);
-                    
+
                     if(depth > 0)
                     {
                         cycles++;
@@ -90,7 +90,7 @@ int main()
                 }
             }
         }
-        
+
         cout << "Maze #" << testcase << ":" << endl;
         if(cycles)
             cout << cycles << " Cycles; the longest has length " << longest/3 << "." << endl << endl;
@@ -98,4 +98,4 @@ int main()
             cout << "There are no cycles." << endl << endl;
     }
     return 0;
-}*/
+}

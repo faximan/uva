@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <set>
@@ -64,18 +64,18 @@ int main()
         cin >> n;
         if( n== 0) break;
         found.clear();
-        
+
         for (int i = 0; i < n; i++) {
             for (int k = 0; k < 6; k++) {
                 cin >> cur[k];
             }
-            
+
             if(!exist())
             {
                 found.insert(get_cur());
             }
-        }        
-        cout << found.size() << endl;        
+        }
+        cout << found.size() << endl;
     }
-    return 0;    
-}*/
+    return 0;
+}

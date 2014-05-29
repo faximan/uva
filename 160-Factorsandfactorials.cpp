@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2011-12-03.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <stdio.h>
 #include <algorithm>
@@ -15,14 +15,14 @@ int primes[25] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59
 int a[25];
 
 int main(){
-    
+
     int n;
     while(true){
         for(int i = 0; i < 25; i++)
             a[i] = 0;
         cin >> n;
         if( n== 0) break;
-        
+
         int mmax = 0;
         for(int i = 2; i <= n; i++){
             int cur = i;
@@ -49,4 +49,4 @@ int main(){
         printf("\n");
     }
     return 0;
-}*/
+}

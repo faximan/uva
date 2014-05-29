@@ -19,7 +19,7 @@ struct edge
 {
 	vertex *from, *to;
 	int used, mi, ma; // min may be -max
-	
+
 	vertex* opposite(vertex* p)
 	{ return (p == from ? to : from); }
 	int left(vertex* p) // Source vertex, capacity left from p
@@ -44,7 +44,7 @@ bool AugPath(vertex* source, vertex* dest)
 	for(int i = 0; i < numv; ++i)
 		v[i].in = 0;
 	source->in = (edge*)-1; // reinterpret_cast<edge*>(-1)
-	
+
 	queue<vertex*> q;
 	q.push(source);
 	while(!q.empty())
@@ -102,10 +102,10 @@ int main()
 		numv = 2 + nk + np;
 		int sum = 0;
 		int nume = 0;
-		
+
 		for(int i = 0; i < MAX_VERTICES; i++)
 			v[i].e.clear();
-		
+
 		for(int i = 0; i < nk; i++)
 		{
 			int cap;
@@ -119,9 +119,9 @@ int main()
 			ee.to = &v[i+1];
 			e[nume] = ee;
 			v[0].e.push_back(&e[nume]);
-			v[i+1].e.push_back(&e[nume++]);			
+			v[i+1].e.push_back(&e[nume++]);
 		}
-		
+
 		for(int i = 0; i < np; i++)
 		{
 			int antal;
@@ -134,7 +134,7 @@ int main()
 			ee.to = &v[numv-1];
 			e[nume] = ee;
 			v[nk+i+1].e.push_back(&e[nume]);
-			v[numv-1].e.push_back(&e[nume++]);	
+			v[numv-1].e.push_back(&e[nume++]);
 
 			for(int j = 0; j < antal; j++)
 			{
@@ -149,10 +149,10 @@ int main()
 				e[nume] = ee;
 				v[nk+i+1].e.push_back(&e[nume]);
 				v[nk+i+1].myindex = i+1;
-				v[dest].e.push_back(&e[nume++]);	
+				v[dest].e.push_back(&e[nume++]);
 			}
 		}
-		
+
 		int res = MaxFlow(&v[0], &v[numv-1]);
 		if(res==sum)
 		{

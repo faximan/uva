@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-02.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -35,7 +35,7 @@ struct angle_compare
 {
 	point p; // Leftmost lower point
 	angle_compare(const point& p) : p(p) { }
-	
+
 	bool operator()(const point& lhs, const point& rhs)
 	{
 		CALC_DET(p, lhs, rhs)
@@ -68,7 +68,7 @@ int main()
 			ss>>p.x >> p.y;
 			v.push_back(p);
 		}
-		
+
 		sort(v.begin(), v.end());
 		int best = 0;
 		for(int i = 0; i < v.size(); i++)
@@ -94,4 +94,3 @@ int main()
 	}
 	return 0;
 }
-*/

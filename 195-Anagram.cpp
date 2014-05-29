@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2011-12-05.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -31,7 +31,7 @@ void solve()
     for(int i = 0; i < v.size(); i++)
         str += v[i];
     s.push_back(str);
-    
+
     while(next_permutation(v.begin(), v.end(), mycomp))
     {
         str = "";
@@ -39,7 +39,7 @@ void solve()
             str += v[i];
         if(s[s.size()-1] != str)
             s.push_back(str);
-    }    
+    }
     for(int i = 0; i < s.size(); i++)
         cout << s[i] << endl;
 }
@@ -54,11 +54,11 @@ int main()
         s.clear();
         string str;
         cin >> str;
-        
+
         for(int i = 0; i < str.size(); i++)
             v.push_back(str[i]);
-        
-        solve();        
+
+        solve();
     }
     return 0;
-}*/    
+}

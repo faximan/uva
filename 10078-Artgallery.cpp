@@ -30,7 +30,7 @@ struct angle_compare
 {
 	point p; // Leftmost lower point
 	angle_compare(const point& p) : p(p) { }
-	
+
 	bool operator()(const point& lhs, const point& rhs)
 	{
 		CALC_DET(p, lhs, rhs)
@@ -46,7 +46,7 @@ int ConvexHull(vector<point>& p, int* res)
 	swap(*min_element(p.begin(), p.end()), p.front());
 	sort(p.begin()+1, p.end(), angle_compare(p.front()));
 	// p.erase(unique(p.begin(), p.end()) ,p.end());
-	
+
 	res[0] = 0; res[1] = 1;
 	int n = 2;
 	for(int i = 2; i < p.size(); ++i)
@@ -69,18 +69,18 @@ int main()
 	{
 		cin >> n;
 		if(n==0)break;
-		
+
 		vector<point>v;
-		
+
 		for (int i = 0; i < n; i++) {
 			point p;
 			cin >> p.x >> p.y;
 			v.push_back(p);
 		}
-		
+
 		int res[51];
 		int solve = ConvexHull(v, res);
-		
+
 		if(solve!=n)
 			cout << "Yes" << endl;
 		else

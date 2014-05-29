@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-13.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -35,7 +35,7 @@ void solve()
             }
         }
     }
-    
+
     for (int j = 0; j < n; j++) {
         int cnt = 0;
         for(int i = 0; i < m; i++)
@@ -46,7 +46,7 @@ void solve()
             return;
         }
     }
-    cout << "Yes" << endl;  
+    cout << "Yes" << endl;
 }
 
 int main(){
@@ -57,8 +57,8 @@ int main(){
         for(int i = 0; i < m; i++)
             for(int j = 0; j < n; j++)
                 cin >> g[i][j];
-        
+
         solve();
     }
     return 0;
-}*/
+}

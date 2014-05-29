@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-/*#include <iostream>
+#include <iostream>
 #include <math.h>
 #include <stdio.h>
 using namespace std;
@@ -18,4 +18,4 @@ int main(){
         printf("%0.lf\n", pow(p, 1/n));
     }
     return 0;
-}*/
+}

@@ -26,7 +26,7 @@ int main()
 			m[numbers[i]]++;
 		}
 		sort(numbers,numbers+n);
-		
+
 		if(n%2==0)
 		{
 			int med1 = numbers[n/2-1];

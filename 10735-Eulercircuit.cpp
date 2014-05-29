@@ -25,7 +25,7 @@ struct edge
 	vertex *from, *to;
 	int used, mi, ma; // min may be -max
 	int first, other;
-	
+
 	vertex* opposite(vertex* p)
 	{ return (p == from ? to : from); }
 	int left(vertex* p) // Source vertex, capacity left from p
@@ -52,7 +52,7 @@ bool AugPath(vertex* source, vertex* dest)
 	for(int i = 0; i < numv; ++i)
 		v[i].in = 0;
 	source->in = (edge*)-1; // reinterpret_cast<edge*>(-1)
-	
+
 	queue<vertex*> q;
 	q.push(source);
 	while(!q.empty())
@@ -103,12 +103,12 @@ int g[101][101];
 
 void euler(list<int>::iterator i, int u)
 {
-	for( int w = 1; w <= vv; w++ ) 
-		if( g[u][w] ) 
+	for( int w = 1; w <= vv; w++ )
+		if( g[u][w] )
 		{
 			g[u][w]--;
 			//g[w][u]--;
-			euler(cycle.insert(i,u),w); 
+			euler(cycle.insert(i,u),w);
 		}
 }
 
@@ -116,23 +116,23 @@ int main()
 {
 	int t;
 	cin >> t;
-	
+
 	for(int casenr = 0; casenr < t; casenr++)
 	{
 		if(casenr)
 			cout << endl;
 
 		cin >> vv >> ee;
-		
+
 		int deg[vv+2];
 		memset(deg,0,sizeof(deg));
 		memset(g,0,sizeof(g));
-		
+
 		for(int i = 0; i < MAX_VERTICES; i++)
 			v[i].e.clear();
-		
+
 		nume = 0;
-		
+
 		for(int i = 1; i <= ee; i++)
 		{
 			int a, b;
@@ -140,7 +140,7 @@ int main()
 			cin >> a >> b >> c;
 			deg[a]++;
 			deg[b]++;
-			
+
 			edge e1,e2;
 			e1.from = &v[i];
 			e2.from = &v[i];
@@ -152,7 +152,7 @@ int main()
 			e2.other = b;
 			e1.used = 0;
 			e2.used = 0;
-			
+
 			if(c=="U")
 			{
 				e1.mi = 0;
@@ -173,7 +173,7 @@ int main()
 			e[nume] = e2;
 			v[ee+b].e.push_back(&e[nume]);
 			v[i].e.push_back(&e[nume++]);
-			
+
 			edge se;
 			se.from = &v[0];
 			se.to = &v[i];
@@ -201,30 +201,30 @@ int main()
 			if(deg[i]%2!=0)
 				ok = false;
 		}
-		
+
 		numv = vv+ee+2;
 		int maxf = MaxFlow(&v[0], &v[ee+vv+1]);
-		
+
 		if(!ok || maxf != ee)
 		{
 			cout << "No euler circuit exist" << endl;
 			continue;
 		}
-		
+
 		cycle.clear();
-		
+
 		for(int i = 0; i < nume; i++)
 			if(e[i].used && e[i].first != -1)
 				g[e[i].first][e[i].other]++;
-		
+
 		euler(cycle.begin(), 1);
 		bool first = false;
 		vector<int>v;
 		for(list<int>::iterator it = cycle.begin(); it != cycle.end(); it++)
 			v.insert(v.begin(),*it);
-		
+
 		v.push_back(1);
-		
+
 		for(int i = 0; i < v.size(); i++)
 		{
 			if(first)

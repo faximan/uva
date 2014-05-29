@@ -19,20 +19,20 @@ int main()
     {
         double gx, gy, dx, dy;
         cin >> gx >> gy >> dx >> dy;
-         
+
         bool finished = false;
-        
+
         for (int i = 0; i < holes; i++) {
             double x, y;
             cin >> x >> y;
-           
+
             if(!finished && sqrt(((x-dx)*(x-dx)+(y-dy)*(y-dy)))/2.0 +1e-10 > sqrt((x-gx)*(x-gx)+(y-gy)*(y-gy)))
             {
                 finished = true;
                 printf("The gopher can escape through the hole at (%.3f,%.3f).\n", x, y);
             }
         }
-        
+
         if(!finished)
             printf("The gopher cannot escape.\n");
     }

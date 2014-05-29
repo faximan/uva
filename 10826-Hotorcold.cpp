@@ -20,32 +20,32 @@ int solve(int a, int b, int c)
 {
     if(a == b)
         return (c == a) ? 1 : 2;
-    
+
     int d = c-a;
     if(d < 0)
         d = b - a - d;
-    
+
     if(dp[b-a][d] < INF)
         return dp[b-a][d];
-    
-    for (int x = a; x <= b; x++) 
+
+    for (int x = a; x <= b; x++)
     {
         if(x == c)
             continue;
-        
+
         int g1 = 0;
-        int g2 = 0;       
-        
+        int g2 = 0;
+
         if(x < c)
-        {       
+        {
             if((c+x+1)/2 <= b)
             {
                 //colder
                 g1 = solve(max(a,(x+c+1)/2), b, x);
             }
-            
+
             //warmer
-            g2 = solve(a, min(b,(x+c)/2), x); 
+            g2 = solve(a, min(b,(x+c)/2), x);
         }
         else if(x > c)
         {
@@ -54,34 +54,34 @@ int solve(int a, int b, int c)
                 //colder
                 g1 = solve(a, min((x+c)/2,b), x);
             }
-            
+
             //warmer
             g2 = solve(max(a,(x+c+1)/2), b, x);
         }
-        
-        dp[b-a][d] = min(dp[b-a][d], max(g1,g2)+1);      
-    }    
+
+        dp[b-a][d] = min(dp[b-a][d], max(g1,g2)+1);
+    }
     return dp[b-a][d];
 }
 
 int main()
 {
-    for (int i = 0; i < 402; i++) 
+    for (int i = 0; i < 402; i++)
         for(int j = 0; j < 402; j++)
                 dp[i][j] = INF;
-    
-    while (true) 
+
+    while (true)
     {
         cin >> n;
-        if( n== 0) break;      
-        
+        if( n== 0) break;
+
         int res = INF;
-        for (int i = 1; i <= n; i++) 
+        for (int i = 1; i <= n; i++)
         {
             res = min(res, solve(1, n, i));
         }
         cout << res << " guess(es) required." << endl;
     }
-    
+
     return 0;
 }

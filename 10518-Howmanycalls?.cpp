@@ -22,13 +22,13 @@ int main()
 		cin >> n >> b;
 		if(!n && !b)
 			break;
-		
+
 		cout << "Case " << casenbr << ": " << n << " " << b << " ";
-		
+
 		long long lastDigit[MAX];
 		lastDigit[0] = 1;
 		lastDigit[1] = 1;
-		
+
 		int i;
 		for(i = 2; i< MAX; i++)
 		{
@@ -36,7 +36,7 @@ int main()
 			if(lastDigit[i] == 1 && lastDigit[i-1] == 1)
 				break;
 		}
-		
+
 		i = i-1;
 		cout << lastDigit[n % i] << endl;
 	}

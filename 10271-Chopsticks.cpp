@@ -29,18 +29,18 @@ int main()
             dp[i] = 0;
         }
         k += 8;
-        
+
         for (i = 1; i <= k; i++) {
-            
+
             for (j = n-3*(k-i)-1; j >= 2*i; j--)
                 dp[j] = dp[j-2]+bad[j];
-            
+
             for(j+=2; j <= n-3*(k-i)-1; j++)
                 dp[j] = min(dp[j],dp[j-1]);
-            
+
             dp[n-3*(k-i)] = dp[n-3*(k-i)-1];
-        }       
+        }
         cout << dp[n] << endl;
-    }   
+    }
     return 0;
 }

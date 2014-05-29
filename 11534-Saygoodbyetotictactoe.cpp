@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <string.h>
 #include <cassert>
@@ -29,10 +29,10 @@ int solve(int lower, int upper, int length)
 	//	cout << lower << " " << upper<< " "  << length << endl;
 	if(dp[lower][upper][length] != -1)
 		return dp[lower][upper][length];
-	
+
 	if(length <= 1)
 		return 0;
-	
+
 	if(length == 2)
 	{
 		assert(lower == POINT || upper == POINT);
@@ -41,7 +41,7 @@ int solve(int lower, int upper, int length)
 		else
 			return 1;
 	}
-	
+
 	vector<int>v;
 	v.push_back(0);
 	for(int i = 0; i < length; i++)
@@ -50,7 +50,7 @@ int solve(int lower, int upper, int length)
 		{
 			if(lower == POINT)
 			{
-				if(length != 3 || upper != CROSS) 
+				if(length != 3 || upper != CROSS)
 					v.push_back(solve(CROSS, upper, length));
 				if(length != 3 || upper != CIRCLE)
 					v.push_back(solve(CIRCLE, upper, length));
@@ -61,14 +61,14 @@ int solve(int lower, int upper, int length)
 		{
 			if(upper == POINT)
 			{
-				if(length != 3 || lower != CROSS) 
+				if(length != 3 || lower != CROSS)
 					v.push_back(solve(lower, CROSS, length));
 				if(length != 3 || lower != CIRCLE)
 					v.push_back(solve(lower, CIRCLE, length));
 			}
 			continue;
 		}
-		
+
 		if(length == 3)
 		{
 			if(lower == CROSS && upper == CROSS)
@@ -79,7 +79,7 @@ int solve(int lower, int upper, int length)
 				v.push_back(1);
 			continue;
 		}
-		
+
 		if(i == 1)
 		{
 			if(lower == POINT)
@@ -96,7 +96,7 @@ int solve(int lower, int upper, int length)
 			}
 			continue;
 		}
-		
+
 		if(i == length - 2)
 		{
 			if(upper == POINT)
@@ -113,7 +113,7 @@ int solve(int lower, int upper, int length)
 			}
 			continue;
 		}
-		
+
 		v.push_back(solve(lower,CROSS,length-i) ^ solve(CROSS, upper, length-i));
 		v.push_back(solve(lower, CIRCLE, length-i) ^ solve(lower, CIRCLE, length-i));
 
@@ -144,7 +144,7 @@ int main()
 	{
 		getline(cin,s);
 		n = s.length();
-		
+
 		int turn = 0;
 		for(int i=0; i<n; i++)
 		{
@@ -152,14 +152,14 @@ int main()
 			if(a[i] != '.')
 				turn++;
 		}
-		
+
 		char lower = POINT;
 		int i = 0;
 		int myxor = 0;
 		int length = 0;
-		
+
 		memset(dp,-1, sizeof(dp));
-		
+
 		for(; i < n; i++)
 		{
 			length++;
@@ -180,7 +180,7 @@ int main()
 		}
 		if(length > 1)
 			myxor ^= solve(lower, POINT, length);
-		
+
 		bool res;
 		if(turn%2==0)
 			res = myxor != 0;
@@ -190,6 +190,6 @@ int main()
 			cout << "Possible." << endl;
 		else
 			cout << "Impossible." << endl;
-		
+
 	}	return 0;
-}*/
+}

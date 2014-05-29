@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-17.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -43,7 +43,7 @@ struct angle_compare
 {
 	point p; // Leftmost lower point
 	angle_compare(const point& p) : p(p) { }
-    
+
 	bool operator()(const point& lhs, const point& rhs)
 	{
 		CALC_DET(p, lhs, rhs)
@@ -59,7 +59,7 @@ struct angle_compare
 int ConvexHull(vector<int>& res)
 { // Returns the number of points in the convex polygon
 	// Find the first leftmost lower point
-    
+
 	res[0] = 0; res[1] = 1;
 	int n = 2;
 	for(int i = 2; i < v.size(); ++i)
@@ -90,48 +90,48 @@ int main()
     for(int cas = 1; cas <= t; cas++){
         int n;
         cin >> n;
-        
+
         long long tx = 0;
         long long ty = 0;
         point p;
-        
+
         v.clear();
-        
+
         for(int i = 0; i < n; i++){
             cin >> p.x >> p.y;
             tx += p.x;
             ty += p.y;
             v.push_back(p);
         }
-        
+
         double ax = tx/(double)n;
         double ay = ty/(double)n;
-        
+
         swap(*min_element(v.begin(), v.end()), v.front());
         sort(v.begin()+1, v.end(), angle_compare(v.front()));
         v.erase(unique(v.begin(), v.end()) ,v.end());
-               
+
         vector<int> res(n);
         int nres = ConvexHull(res);
-        
+
         if(v.size() < 3 || nres < 3)
         {
-            printf("Case #%d: 0.000\n", cas); 
+            printf("Case #%d: 0.000\n", cas);
             continue;
         }
-        
+
         double mindist = INF;
-        
+
         for (int i = 0; i < nres; i++) {
             int x1 = v[res[i]].x;
             int x2 = v[res[(i+1)%nres]].x;
             int y1 = v[res[i]].y;
             int y2 = v[res[(i+1)%nres]].y;
- 
-            mindist = min(mindist, my_abs((x2-x1)*(y1-ay)-(x1-ax)*(y2-y1))/(double)(sqrt(pow(x2-x1,2) + pow(y2-y1,2))));  
+
+            mindist = min(mindist, my_abs((x2-x1)*(y1-ay)-(x1-ax)*(y2-y1))/(double)(sqrt(pow(x2-x1,2) + pow(y2-y1,2))));
         }
-        printf("Case #%d: %0.3lf\n", cas, mindist); 
+        printf("Case #%d: %0.3lf\n", cas, mindist);
     }
-    
+
     return 0;
-}*/
+}

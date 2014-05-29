@@ -40,12 +40,12 @@ bool dfs(int cur)
 
 void euler(list<pair<int, int> >::iterator i, int u)
 {
-	for( int v = 0; v <= maxd; v++ ) 
-		if( g[u][v] ) 
+	for( int v = 0; v <= maxd; v++ )
+		if( g[u][v] )
 		{
 			g[u][v]--;
 			g[v][u]--;
-			euler(cycle.insert(i,make_pair(v,u)),v); 
+			euler(cycle.insert(i,make_pair(v,u)),v);
 		}
 }
 
@@ -53,7 +53,7 @@ int main()
 {
 	int t;
 	cin >> t;
-	for (int i = 1; i <= t; i++) 
+	for (int i = 1; i <= t; i++)
 	{
 		if(i!=1)
 			printf("\n");
@@ -63,16 +63,16 @@ int main()
 		scanf("%d",&n);
 		int a, b;
 		maxd = 0;
-		
+
 		for(int j = 0; j < 1001; j++)
 		{
-			v[j].clear();	
+			v[j].clear();
 			vis[j] = 0;
 			for (int k = 0; k < 1001; k++)
 				g[j][k] = 0;
 		}
-		
-		for (int j = 0; j < n; j++) 
+
+		for (int j = 0; j < n; j++)
 		{
 			scanf("%d %d", &a,&b);
 			v[a].push_back(b);
@@ -80,8 +80,8 @@ int main()
 			g[a][b]++;
 			g[b][a]++;
 			maxd = max(maxd, max(a,b));
-		} 
-		
+		}
+
 		if(!dfs(a))
 		{
 			printf("some beads may be lost\n");
@@ -97,7 +97,7 @@ int main()
 			printf("some beads may be lost\n");
 			continue;
 		}
-		
+
 		euler(cycle.begin(), a);
 
 		for(list<pair<int, int> >::iterator it = cycle.begin(); it != cycle.end(); it++)

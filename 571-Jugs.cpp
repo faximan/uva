@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-14.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -25,13 +25,13 @@ void solve(int a, int b)
     if(visited[a][b])
         return;
     visited[a][b] = 1;
-    
+
     if(b == n)
     {
         sol = true;
         return;
     }
-    
+
     if(a != ca)
     {
         moves.push_back(1);
@@ -80,7 +80,7 @@ void solve(int a, int b)
             return;
         moves.pop_back();
     }
-    
+
 }
 
 int main()
@@ -94,13 +94,13 @@ int main()
         }
         moves.clear();
         sol = false;
-       
+
         solve(0, 0);
-        
+
         for (int i = 0; i < moves.size(); i++) {
             cout << s[moves[i]-1] << endl;
         }
         cout << "success" << endl;
     }
     return 0;
-}*/
+}

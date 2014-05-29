@@ -41,15 +41,15 @@ int main(){
         cin >> n1 >> n2;
         if(n1 == 0 && n2 == 0)
             break;
-        
+
         for(int i = 0; i < n1; i++)
             cin >> a[i+1];
         for(int i = 0; i < n2; i++)
             cin >> b[i+1];
-        
+
         cout << "Twin Towers #" << ++c << endl;
         cout << "Number of Tiles : " << LCS() << endl << endl;
     }
-    
+
     return 0;
 }

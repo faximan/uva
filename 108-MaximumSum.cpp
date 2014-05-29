@@ -22,29 +22,29 @@ int kadane(){
         cms = cms + bb[cei];
         if(cms > m)
             m = cms;
-        
+
         if(cms < 0){
             cms = 0;
             csi = cei + 1;
         }
     }
-        
+
     return m;
 }
 
 int main(){
-    
+
     int m = -0x5FFFFFFF;
-    
+
     cin >> n;
     for(int i = 0; i < n; i++)
         for(int j = 0; j < n; j++)
             cin >> aa[i][j];
-    
+
     for (int i = 0; i < n; i++)
         for(int j = 1; j < n; j++)
-            aa[i][j] = aa[i][j-1]+aa[i][j]; 
-        
+            aa[i][j] = aa[i][j-1]+aa[i][j];
+
     for(int i = 0; i < n; i++)
         for(int j = -1; j < i; j++){
             if(j==-1)
@@ -53,10 +53,10 @@ int main(){
             else
                 for(int k = 0; k < n; k++)
                     bb[k] = aa[k][i] - aa[k][j];
-            
+
             m = max(m, kadane());
-        }           
-            
-    cout << m << endl;   
+        }
+
+    cout << m << endl;
     return 0;
 }

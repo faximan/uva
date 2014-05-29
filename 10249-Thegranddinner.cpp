@@ -33,27 +33,27 @@ int main()
     {
         cin >> num_team >> num_table;
         if(num_team == 0) break;
-        
+
         for (int i = 0; i < num_team; i++) {
             cin >> mem[i].size;
             mem[i].index = i;
             mem[i].assigned.clear();
         }
-        
+
         for (int i = 0; i < num_table; i++) {
             cin >> table[i];
         }
-        
+
         sort(mem, mem+num_team, sort_by_size);
-        
+
         bool finished = false;
         bool still_going = true;
-        
+
         while(still_going)
         {
             finished = true;
             still_going = false;
-            for (int i = 0; i < num_team; i++) 
+            for (int i = 0; i < num_team; i++)
             {
                 for (int j = 0; j < num_table && mem[i].size; j++)
                 {
@@ -68,7 +68,7 @@ int main()
                 }
             }
         }
-        
+
         if(finished)
         {
             cout << "1" << endl;

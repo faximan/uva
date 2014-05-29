@@ -6,15 +6,13 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-/*
-
 #include <iostream>
 #include <stdio.h>
- 
+
  using namespace std;
- 
+
 int main(){
- 
+
     bool first = true;
     char c;
     while((c = fgetc(stdin)) != EOF)
@@ -33,8 +31,8 @@ int main(){
         }
         else
         {
-            cout << c; 
+            cout << c;
         }
     }
      return 0;
-}*/
+}

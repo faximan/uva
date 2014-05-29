@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-20.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -26,10 +26,10 @@ bool solve(int cur)
         return perm[cur][3] == '1';
     if(s[ind] == 't')
         return perm[cur][4] == '1';
-    
+
     bool a;
     bool b;
-    
+
     if(s[ind] == 'K')
     {
         ind++;
@@ -76,7 +76,7 @@ int main()
     {
         cin >> s;
         if(s == "0") break;
-            
+
         bool taut = true;
         for(int i = 0; i< 32; i++)
         {
@@ -89,4 +89,4 @@ int main()
             cout << "not" << endl;
     }
     return 0;
-}*/
+}

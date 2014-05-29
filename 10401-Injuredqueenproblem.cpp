@@ -20,11 +20,11 @@ int main()
     while(cin >> board)
 	{
 		int n = strlen(board);
-		
+
 		for (int i = 0; i < 16; i++)
 			for(int j = 0; j < 16; j++)
 				result[i][j] = 0;
-		
+
 		if(board[0] == '?')
 		{
 			for(int i = 0; i < n; i++)

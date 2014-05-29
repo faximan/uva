@@ -5,27 +5,27 @@
 //  Created by Alexander Faxå on 2012-02-27.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
 
 int main()
 {
-    
+
     int n;
     char c;
     cin >>noskipws>> n;
     cin >> c;
-    
+
     while(n--)
     {
-    
+
         int a[201];
         int b[201];
-    
+
         int i, j;
- 
+
         for(i = 0;;i++)
         {
             cin >> noskipws >> c;
@@ -38,11 +38,11 @@ int main()
             if(c == '\n' || c == '\0') break;
             b[j] = c - '0';
         }
-        
+
         int res[202];
         int index = 0;
         int carry = 0;
-    
+
         int ii = 0;
         int jj = 0;
         while(ii < i || jj < j)
@@ -55,7 +55,7 @@ int main()
             else if(jj >= j)
             {
                 temp = a[ii++] + carry;
-                
+
             }
             else
             {
@@ -66,14 +66,13 @@ int main()
         }
         if(carry)
             res[index++] = carry;
-    
+
         int cur = 0;
         while(!res[cur])
             cur++;
         while(cur < index)
             cout << res[cur++];
-        cout << endl;      
+        cout << endl;
     }
     return 0;
 }
- */

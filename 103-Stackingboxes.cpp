@@ -43,7 +43,7 @@ void solve(int cur, int depth)
             p[i] = -1;
         }
     }
-    
+
     if(!found && depth > best){
         best = depth;
         bestsq.clear();
@@ -69,17 +69,17 @@ int main()
             sort(&dim[i][0], &dim[i][n]);
             p[i] = -1;
         }
-                
+
         for(int i = 0; i < k; i++){
             for(int j = 0; j < k; j++){
                 fits[i][j] = isfit(i,j);
             }
         }
-        
+
         best = 0;
         for(int i = 0; i < k; i++)
             solve(i, 1);
-        
+
         cout << best << " " << endl;
         for(int i = bestsq.size()-1; i >= 0; i--){
             if(i != bestsq.size()-1)
@@ -87,7 +87,7 @@ int main()
             cout << (bestsq[i] + 1);
         }
         cout << endl;
-        
+
     }
     return 0;
 }

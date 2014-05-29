@@ -34,48 +34,48 @@ private:
 	int size;            // number of used bytes (digits)
 	int capacity;        // size of digits
 	int sign;            // -1, 0 or +1
-	
+
 public:
 	/** Creates a BigInt with initial value n and initial capacity cap **/
 	BigInt( int n, int cap );
-	
+
 	/** Creates a BigInt with initial value n **/
 	BigInt( int n );
-	
+
 	/** Creates a BigInt with initial value floor( d ) **/
 	BigInt( long double d );
-	
+
 	/** Creates a BigInt with value 0 **/
 	BigInt();
-	
+
 	/** Creates a BigInt by reading the value from a string **/
 	BigInt( string s );
-	
+
 	/** Creates a BigInt by reading the value from a C string **/
 	BigInt( const char s[] );
-	
+
 	/** Copy constructor **/
 	BigInt( const BigInt &n );
-	
+
 	/** Assignment operators **/
 	const BigInt &operator=( const BigInt &n );
 	const BigInt &operator=( int n );
-	
+
 	/** Cleans up **/
 	~BigInt();
-	
+
 	/** Removes any leading zeros and adjusts the sign **/
 	void normalize();
-	
+
 	/** Returns the sign of n: -1, 0 or 1 **/
 	static int sig( int n );
-	
+
 	/** Returns the sign of n: -1, 0 or 1 **/
 	static int sig( long double n );
-	
+
 	/** Returns the number of decimal digits **/
 	inline int length() { return size; }
-	
+
 	/** Arithmetic **/
 	BigInt operator++();
 	BigInt operator++( int );
@@ -106,7 +106,7 @@ public:
 	BigInt divide( BigInt n );        // Divides storing quotient in *this and returning the remainder
 	BigInt operator* ( long double n ); // Multiplies by a double and truncates (always under-estimates!)
 	void   operator*=( long double n ); // Multiplies by a double and truncates (always under-estimates!)
-	
+
 	/** Bitwise arithmetic **/
 	BigInt operator<< ( int n    );
 	void   operator<<=( int n    );
@@ -130,13 +130,13 @@ public:
 	/** Concatenation ;-) **/
 	BigInt operator,( int n );
 	BigInt operator,( BigInt n );
-	
+
 	/** Casting **/
 	bool operator!();
 	operator bool();
 	//operator int();   //XXX: Don't do this!!! It takes precedence over operator+(int,BigInt)
 	operator string();
-	
+
 	/** Comparison **/
 	bool operator<( BigInt n );
 	bool operator>( BigInt n );
@@ -149,27 +149,27 @@ public:
 	bool operator<=( int n );
 	bool operator>=( int n );
 	int compare( BigInt n );
-	
+
 	/** Returns the lowest value as an integer (watch out for overflow) **/
 	int toInt();
-	
+
 	/** Returns the value as a decimal string **/
 	string toString();
-	
+
 	/** Outputs decimal value to stdout **/
 	void print();
-	
+
 	/** Outputs the decimal value, with commas **/
 	void printWithCommas( ostream &out );
-	
+
 private:
 	/** Expansion **/
 	void grow();
-	
+
     /** I/O Friends **/
     friend istream &operator>>( istream &in, BigInt &n );
     friend ostream &operator<<( ostream &out, BigInt n );
-	
+
     /** Logarithms **/
     friend long double log2( BigInt x, long double epsilon );
     inline friend long double log( BigInt x, long double epsilon );
@@ -225,7 +225,7 @@ istream &operator>>( istream &in, BigInt &n )           // FIXME: see inside
         return in;
     }
     if( c == ( int )'-' ) { sign = -1; in.get(); }
-	
+
     // FIXME: Extremely inefficient! Use a string.
     while( ( c = in.peek() ) >= 0 && isDigit( c ) )
     {
@@ -304,7 +304,7 @@ BigInt::BigInt( string s )
     sign = 0;
     digits = new char[capacity];
     memset( digits, 0, capacity );
-	
+
     istringstream in( s );
     in >> ( *this );
 }
@@ -315,7 +315,7 @@ BigInt::BigInt( const char s[] )
     sign = 0;
     digits = new char[capacity];
     memset( digits, 0, capacity );
-	
+
     istringstream in( s );
     in >> ( *this );
 }
@@ -474,7 +474,7 @@ BigInt BigInt::operator+( BigInt n )
 BigInt &BigInt::operator+=( int n )
 {
     if( size == capacity ) grow();
-	
+
     int nsign = sig( n );
     if( !nsign ) return *this;
     if( !sign ) sign = nsign;
@@ -501,7 +501,7 @@ BigInt &BigInt::operator+=( BigInt n )
 {
     int maxS = max( size, n.size ) + 1;
     while( maxS >= capacity ) grow();        //FIXME: this is stupid
-	
+
     if( !n.sign ) return *this;
     if( !sign ) sign = n.sign;
     if( sign == n.sign )
@@ -544,7 +544,7 @@ BigInt BigInt::operator-( BigInt n )
 BigInt &BigInt::operator-=( int n )
 {
     if( size == capacity ) grow();
-	
+
     int nsign = sig( n );
     if( !nsign ) return *this;
     if( !sign ) sign = 1;
@@ -557,7 +557,7 @@ BigInt &BigInt::operator-=( int n )
             operator=( toInt() - n );
             return *this;
         }
-		
+
         n *= nsign;
         int carry = 0;
         int i;
@@ -580,12 +580,12 @@ BigInt &BigInt::operator-=( BigInt n )
 {
     int maxS = max( size, n.size ) + 1;
     while( maxS >= capacity ) grow();        //FIXME: this is stupid
-	
+
     if( !n.sign ) return *this;
     if( !sign ) sign = 1;
     if( sign == n.sign )
     {
-        if( sign >= 0 && *this < n || sign < 0 && *this > n ) 
+        if( sign >= 0 && *this < n || sign < 0 && *this > n )
         {
             // Subtracting a bigger number
             BigInt tmp = n;
@@ -594,7 +594,7 @@ BigInt &BigInt::operator-=( BigInt n )
             sign = -sign;
             return *this;
         }
-		
+
         int carry = 0;
         int i;
         for( i = 0; i < maxS - 1; i++ )
@@ -635,7 +635,7 @@ BigInt BigInt::operator*( int n )
     n *= nsign;
     result.sign = sign * nsign;
     if( !result.sign ) return result;
-	
+
     int i, j;
     for( i = 0; n; i++ )
     {
@@ -659,10 +659,10 @@ BigInt BigInt::operator*( int n )
 BigInt BigInt::operator*( BigInt n )
 {
     BigInt result( 0, size + n.size );
-	
+
     result.sign = sign * n.sign;
     if( !result.sign ) return result;
-	
+
     int i, j;
     for( i = 0; i < n.size; i++ )
     {
@@ -681,7 +681,7 @@ BigInt BigInt::operator*( BigInt n )
         }
     }
     result.size = i + j - 1;
-	
+
     return result;
 }
 
@@ -698,7 +698,7 @@ void BigInt::operator*=( BigInt n )
 BigInt BigInt::operator/( int n )
 {
     if( !n ) n /= n;        //XXX: force a crash
-	
+
     BigInt result( *this );
     result /= n;
     return result;
@@ -707,7 +707,7 @@ BigInt BigInt::operator/( int n )
 BigInt BigInt::operator/( BigInt n )
 {
     if( !n ) n.size /= n.size;       //XXX: force a crash
-	
+
     BigInt result( *this );
     result /= n;
     return result;
@@ -748,12 +748,12 @@ void BigInt::operator%=( BigInt n )
 int BigInt::divide( int n )
 {
     if( !n ) n /= n;        //XXX: force a crash
-	
+
     int nsign = sig( n );
     n *= nsign;
     if( !sign ) return 0;
     sign *= nsign;
-	
+
     int tmp = 0;
     for( int i = size - 1; i >= 0; i-- )
     {
@@ -769,13 +769,13 @@ int BigInt::divide( int n )
 BigInt BigInt::divide( BigInt n )
 {
     if( !n ) n.size /= n.size;         //XXX: force a crash
-	
+
     if( !sign ) return 0;
     sign *= n.sign;
-	
+
     int oldSign = n.sign;
     n.sign = 1;
-	
+
     BigInt tmp( 0, size );
     for( int i = size - 1; i >= 0; i-- )
     {
@@ -785,9 +785,9 @@ BigInt BigInt::divide( BigInt n )
         while( tmp >= n ) { tmp -= n; digits[i]++; }
     }
     normalize();
-	
+
     n.sign = oldSign;
-	
+
     return tmp;
 }
 /*
@@ -797,20 +797,20 @@ BigInt BigInt::operator*( long double n )
 {
     // the number of digits after the decimal point to use
     int DIGS_AFTER_DOT = 15;
-	
+
     int nsign = sig( n );
     n *= nsign;
     int ndigs = n >= 1 ? ( int )log10( n ) + 1 : 0;
     BigInt result( 0, size + ndigs );
     result.sign = sign * nsign;
     if( !result.sign ) return result;
-	
+
     if( n >= 1 ) for( int i = 0; i < ndigs; i++ ) n /= 10;
     result.size = 0;
-	
+
     char afterDot[DIGS_AFTER_DOT + 1];
     memset( afterDot, 0, sizeof( afterDot ) );
-	
+
     // Keep going until the DIGS_AFTER_DOT'th digit after the decimal point
     for( int i = ndigs - 1; i >= -DIGS_AFTER_DOT; i-- )
     {
@@ -818,7 +818,7 @@ BigInt BigInt::operator*( long double n )
         int dig = ( int )floor( n );
         n -= dig;
         if( !dig ) continue;
-		
+
         int carry = 0;
         for( int j = 0; j < size || carry; j++ )
         {
@@ -993,7 +993,7 @@ long double log2( BigInt x, long double epsilon = 0.000000000000001 )
 {
     static /* const */ long double O = 0.0;
     if( x.sign <= 0 ) return O / O;     // Return NaN
-	
+
     long double y = 0.0, z = 1.0, f = 0.0;
     while( x >= 2 )
     {
@@ -1048,9 +1048,9 @@ int main()
 		q = BigInt(t2);
 		if(!p)
 			break;
-		
+
 		BigInt a[1000];
-		
+
 		int i = 0;
 		BigInt pp = p;
 		BigInt qq = q;
@@ -1071,16 +1071,16 @@ int main()
 			stringstream s;
 			s << a[j];
 			b[j] = s.str();
-		}	
-		
+		}
+
 		cout << "Case " << casenr << ":" << endl << pp << " / " << qq << endl;
-		
+
 		int width = 1;
 		for(int j = 0; j < i; j++)
 			width += b[j].length() + 3;
-		
+
 		int indent = 0;
-		
+
 		int cur = width - 3 - b[0].length();
 		cur = 3+b[0].length() + (cur-1)/2;
 		for(int j = 0; j < width; j++){
@@ -1090,7 +1090,7 @@ int main()
 				cout << "1";
 		}
 		cout << endl;
-		
+
 		for(int j = 0; j < i; j++)
 		{
 			for(int k = 0; k < indent; k++)
@@ -1100,7 +1100,7 @@ int main()
 				cout << "-";
 			cout << endl;
 			indent += 3 + b[j].length();
-			
+
 			int cur = width - (indent + b[j+1].length() + 3);
 			cur = indent + b[j+1].length() + 3 + (cur-1)/2;
 			if(cur >= width)
@@ -1111,7 +1111,7 @@ int main()
 				else
 					cout << "1";
 			}
-			cout << endl;	
+			cout << endl;
 		}
 	}
 	return 0;

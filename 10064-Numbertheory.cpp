@@ -38,16 +38,16 @@ int main()
 {
 	int n;
 	calcprimes((int)sqrt(pow(2,32)));
-	
+
 	while(cin>>n)
 	{
 		int div = 1;
 		int cop = n;
 		int cur = n;
-		
+
 		int i = 0;
 		int cur_prime = prime[i];
-		
+
 		while(cur != 1 && cur_prime*cur_prime <= cur && cur_prime != 0)
 		{
 			int times = 0;

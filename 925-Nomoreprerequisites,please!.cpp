@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-18.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <map>
 #include <vector>
@@ -44,11 +44,11 @@ int main()
 			cin >> s;
 			names[s] = i;
 			numbers[i] = s;
-			
+
 			for(int j = 0; j < n; j++)
 				g[i][j] = 0;
 		}
-		
+
 		int p;
 		cin >> p;
 		for(int i = 0; i < p; i++)
@@ -64,10 +64,10 @@ int main()
 				g[names[c1]][names[c2]] = 1;
 			}
 		}
-		
+
 		for(int i = 0; i < n; i++)
 			solve(i,i);
-		
+
 		vector<pair<string, vector<string> > >v;
 
 		for(int i = 0; i < n; i++)
@@ -90,8 +90,7 @@ int main()
 				cout << " " << v[i].second[j];
 			}
 			cout << endl;
-		}		
+		}
 	}
 	return 0;
 }
-*/

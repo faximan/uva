@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-20.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <vector>
 #include <iostream>
 #include <math.h>
@@ -31,7 +31,7 @@ struct angle_compare
 {
 	point p; // Leftmost lower point
 	angle_compare(const point& p) : p(p) { }
-	
+
 	bool operator()(const point& lhs, const point& rhs)
 	{
 		CALC_DET(p, lhs, rhs)
@@ -47,7 +47,7 @@ int ConvexHull(vector<point>& p, int* res)
 	swap(*min_element(p.begin(), p.end()), p.front());
 	sort(p.begin()+1, p.end(), angle_compare(p.front()));
 	// p.erase(unique(p.begin(), p.end()) ,p.end());
-	
+
 	res[0] = 0; res[1] = 1;
 	int n = 2;
 	for(int i = 2; i < p.size(); ++i)
@@ -70,13 +70,13 @@ int main()
 	{
 		casenr++;
 		cin >> n;
-		
+
 		if(!n)
 			break;
-		
+
 		if(casenr!=1)
 			cout << endl;
-		
+
 		vector<point>p;
 		for(int i = 0; i < n; i++)
 		{
@@ -84,20 +84,20 @@ int main()
 			cin >> pp.x >> pp.y;
 			p.push_back(pp);
 		}
-		
+
 		int res[10000];
 		cout << "Region #" << casenr << ":" << endl;
-		
+
 		if(n==1)
 		{
 			cout << "(" << p[res[0]].x << "," << p[res[0]].y << ")" << endl << "Perimeter length = 0.00" << endl;
 			continue;
 		}
-		
+
 		int sol = ConvexHull(p,res);
 		cout.precision(1);
 
-		
+
 		point curpoint = p[res[0]];
 		double perm = 0;
 		for(int i = 0; i < sol; i++)
@@ -111,7 +111,7 @@ int main()
 		perm += sqrt(pow(curpoint.x-p[res[0]].x,2) + pow(curpoint.y-p[res[0]].y,2));
 		cout.precision(2);
 		cout << fixed << endl << "Perimeter length = " << perm << endl;
-			
+
 	}
 	return 0;
-}*/
+}

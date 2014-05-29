@@ -31,10 +31,10 @@ int main()
     for (int c = 0; c < cas; c++) {
         a.clear();
         str.clear();
-        
+
         if(c != 0)
             cout << endl;
-        
+
         int n;
         cin >> n;
         for (int i = 0; i < n; i++) {
@@ -42,9 +42,9 @@ int main()
             cin >> d;
             a.push_back(d);
         }
-        
+
         sort(a.begin(), a.end());
-        
+
         int time = 0;
         string s;
         while(a.size() > 3)
@@ -102,7 +102,7 @@ int main()
         cout << time << endl;
         for (int i = 0; i < str.size(); i++) {
             cout << str[i] << endl;
-        }        
-    }    
+        }
+    }
     return 0;
 }

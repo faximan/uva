@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-15.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -19,7 +19,7 @@ int main()
 	string s;
 	while(getline(cin,s))
 	{
-		for (int j = 0; j < s.length(); j++) 
+		for (int j = 0; j < s.length(); j++)
 		{
 			c = s[j];
 			if(c==' ')
@@ -28,9 +28,9 @@ int main()
 				cout << "_";
 			else if(c=='?')
 				cout << "\"";
-			else 
+			else
 			{
-				for (int i = 0; i < qwerty.length(); i++) 
+				for (int i = 0; i < qwerty.length(); i++)
 					if(qwerty[i]==c)
 					{
 						cout << dworak[i];
@@ -42,4 +42,3 @@ int main()
 	}
 	return 0;
 }
-*/

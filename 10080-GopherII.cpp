@@ -120,7 +120,7 @@ int main()
     {
         point coords[nums];
         for (int i = 0; i < nums; i++) {
-            cin >> coords[i].x >> coords[i].y;  
+            cin >> coords[i].x >> coords[i].y;
             vs[i].d.clear();
             vs[i].conn = 0;
         }
@@ -134,8 +134,8 @@ int main()
                 }
             }
         }
-        cout << nums - BipartiteMatching() << endl;   
-    }   
+        cout << nums - BipartiteMatching() << endl;
+    }
     return 0;
 }
 

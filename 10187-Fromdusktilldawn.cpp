@@ -44,7 +44,7 @@ bool ShortestPath(vertex* source, vertex* dest)
         v[i].time = 0;
 	}
 	source->cost = 0;
-    
+
 	priority_queue<elem, vector<elem>, greater<elem> > pq;
 	pq.push(elem(0, source));
 	while(!pq.empty())
@@ -56,13 +56,13 @@ bool ShortestPath(vertex* source, vertex* dest)
 			continue; // Already processed
 		if(cur == dest)
 			return true;
-		for(vector<edge>::iterator it = cur->out.begin(); 
+		for(vector<edge>::iterator it = cur->out.begin();
             it != cur->out.end(); ++it) // Go through the edges
 		{
 			int newCost = cur->cost;
             if(cur->time > it->dept)
                 newCost++;
-            
+
 			if(newCost < it->to->cost)
 			{
 				it->to->cost = newCost;
@@ -79,17 +79,17 @@ int main()
 {
     int cases;
     cin >> cases;
-    for (int c = 1; c <= cases; c++) 
+    for (int c = 1; c <= cases; c++)
     {
         m.clear();
         int routes;
         cin >> routes;
         numv = 0;
-        
+
         for (int i = 0; i < MAX_VERTICES; i++)
             v[i].out.clear();
-        
-        for (int i = 0; i < routes; i++) 
+
+        for (int i = 0; i < routes; i++)
         {
             string a, b;
             int dept, length;
@@ -107,12 +107,12 @@ int main()
                 v[m[a]].out.push_back(e);
             }
         }
-        
+
         string a, b;
         cin >> a >> b;
-        
+
         cout << "Test Case " << c << "." << endl;
-        
+
         if(!m.count(a) || !m.count(b) || !ShortestPath(&v[m[a]], &v[m[b]]))
         {
             cout << "There is no route Vladimir can take." << endl;
@@ -120,7 +120,7 @@ int main()
         else
             cout << "Vladimir needs " << v[m[b]].cost << " litre(s) of blood." << endl;
     }
-  
+
     return 0;
 }
 

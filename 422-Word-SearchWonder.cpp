@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-13.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -22,7 +22,7 @@ bool is_at(int x, int y, int i, int dx, int dy)
         return false;
     else
         return is_at(x+dx,y+dy,i+1,dx,dy);
-    
+
 }
 
 void find()
@@ -70,17 +70,17 @@ void find()
 int main()
 {
     cin >> l;
-    
+
     for(int i = 0; i < l; i++)
         for(int j = 0; j < l; j++)
             cin >> c[i][j];
-    
+
     while(true)
     {
         cin >> s;
         length = s.length();
         if(s == "0") break;
         find();
-    }    
+    }
     return 0;
-}*/
+}

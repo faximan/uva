@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-11.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
@@ -105,6 +105,6 @@ int main()
 			cout << "yes" << endl;
 		else
 			cout << "no" << endl;
-	}	
+	}
 	return 0;
-}*/
+}

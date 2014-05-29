@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-15.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -14,7 +14,7 @@ int king[64];
 int queen[64];
 
 int main()
-{	
+{
 	int k, q, nq;
 	while(cin >> k>> q >> nq)
 	{
@@ -37,7 +37,7 @@ int main()
 			king[k-8]=1;
 		if(k<=55 && k+8!=q)
 			king[k+8]=1;
-		
+
 		int i = q;
 		while(true)
 		{
@@ -90,4 +90,3 @@ int main()
 	}
 	return 0;
 }
-*/

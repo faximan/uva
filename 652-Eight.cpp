@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-/*
 #include <iostream>
 #include <queue>
 #include <set>
@@ -30,20 +29,20 @@ int main()
 {
 	map<string,string>visited;
 	queue<state>states;
-	
+
 	state newstate;
 	newstate.st = final;
 	newstate.seq = "";
 	newstate.location = 8;
-	
+
 	states.push(newstate);
 	visited[final]="";
-	
+
 	while(!states.empty())
 	{
 		state cur = states.front();
 		states.pop();
-					
+
 		if(cur.location > 2)
 		{
 			newstate.location = cur.location - 3;
@@ -57,13 +56,13 @@ int main()
 				visited[newstate.st] = newstate.seq;
 			}
 		}
-			
+
 		if(cur.location < 6)
 		{
 			newstate.location = cur.location + 3;
 			newstate.seq = "u"+cur.seq;
 			string news = cur.st;
-			swap(news[cur.location],news[cur.location+3]);	
+			swap(news[cur.location],news[cur.location+3]);
 			newstate.st = news;
 			if(!visited.count(newstate.st))
 			{
@@ -77,7 +76,7 @@ int main()
 			newstate.location = cur.location + 1;
 			newstate.seq = "l"+cur.seq;
 			string news = cur.st;
-			swap(news[cur.location],news[cur.location+1]);				
+			swap(news[cur.location],news[cur.location+1]);
 			newstate.st = news;
 			if(!visited.count(newstate.st))
 			{
@@ -85,7 +84,7 @@ int main()
 				visited[newstate.st] = newstate.seq;
 			}
 		}
-			
+
 		if(cur.location % 3 != 0)
 		{
 			newstate.location = cur.location - 1;
@@ -98,7 +97,7 @@ int main()
 				states.push(newstate);
 				visited[newstate.st] = newstate.seq;
 			}
-		}		
+		}
 	}
 
 	int n;
@@ -113,13 +112,13 @@ int main()
 		{
 			string c;
 			cin >> c;
-			s += c;			
+			s += c;
 		}
-		
+
 		if(visited.count(s))
 			cout << visited[s] << endl;
 		else
 			cout << "unsolvable" << endl;
 	}
 	return 0;
-}*/
+}

@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-06.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 #define UNKNOWN 0
@@ -34,7 +34,7 @@ int solve(int x, int y, int time)
     int c = solve(x+1,y,time-1);
     int d = solve(x,y-1,time-1);
     int e = solve(x,y+1,time-1);
-    
+
     if(a == EMPTY || b == EMPTY || c == EMPTY || d == EMPTY ||e == EMPTY)
         pos[x][y][time] = EMPTY;
     else
@@ -50,9 +50,9 @@ int main()
     {
         cin >> W >> H >> t;
         if(W == 0) break;
-        
+
         c++;
-        
+
         for (int i = 0; i <= W; i++)
             for (int j = 0; j <= H; j++)
                 for (int k = 0; k <= t; k++)
@@ -60,27 +60,27 @@ int main()
 
         int n;
         cin >> n;
-        for (int i = 0; i < n; i++) 
+        for (int i = 0; i < n; i++)
         {
             int ti, left, top, right, bottom;
             cin >> ti >> left >> top >> right >> bottom;
-            
+
             for (int a = left; a <= right; a++)
-                for (int b = top; b <= bottom; b++) 
+                for (int b = top; b <= bottom; b++)
                     pos[a][b][ti] = OCCUPIED;
-        }    
-        
+        }
+
         int ok = 0;
-        for (int i = 1; i <= W; i++) 
-            for (int j = 1; j <= H; j++) 
+        for (int i = 1; i <= W; i++)
+            for (int j = 1; j <= H; j++)
                 if(solve(i, j, t) == EMPTY)
                     ok = 1;
-        
+
         cout << "Robbery #" << c << ":" << endl;
-        
+
         if(!ok)
             cout << "The robber has escaped." << endl << endl;
-        
+
         else
         {
             ok = 0;
@@ -117,4 +117,4 @@ int main()
         }
     }
     return 0;
-}*/
+}

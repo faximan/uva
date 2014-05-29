@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-02.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 #define INF 0x7FFFFFFF
@@ -18,13 +18,13 @@ int solve(int l, int u, int left)
 {
     if(dp[l][u][left] != -1)
         return dp[l][u][left];
-    
+
     int res = INF;
-    
+
     for (int i = l+1; i <= u; i++)
         res = min(res, i+max(solve(l, i-1, left-1), solve(i, u, left)));
 
-    dp[l][u][left] = res;    
+    dp[l][u][left] = res;
     return dp[l][u][left];
 }
 
@@ -43,7 +43,7 @@ int main()
         for (int j = 0; j < 11; j++)
             dp[i][i][j] = 0;
     }
-    
+
     int c;
     cin >> c;
     while(c--)
@@ -52,6 +52,6 @@ int main()
         cin >> k >> m;
         cout << solve(0, m, k) << endl;
     }
-    
+
     return 0;
-}*/
+}

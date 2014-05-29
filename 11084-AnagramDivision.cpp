@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-06.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 #include <stdio.h>
@@ -27,7 +27,7 @@ int main()
 		res = 0;
 		length = strlen(s);
 		sort(s,s+length);
-		do 
+		do
 		{
 			cur = atoi(s);
 			if(cur%d==0)
@@ -37,4 +37,3 @@ int main()
 	}
 	return 0;
 }
-*/

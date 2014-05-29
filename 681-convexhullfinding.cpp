@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-01.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -36,7 +36,7 @@ struct angle_compare
 {
 	point p; // Leftmost lower point
 	angle_compare(const point& p) : p(p) { }
-	
+
 	bool operator()(const point& lhs, const point& rhs)
 	{
 		CALC_DET(p, lhs, rhs)
@@ -80,10 +80,10 @@ int main()
 			cout << n << endl;
 		}
 		cin >> n;
-		
+
 		vector<point>p;
 		set<point>s;
-		
+
 		for(int i = 0; i < n; i++)
 		{
 			point po;
@@ -99,11 +99,10 @@ int main()
 		int solve = ConvexHull(p, res);
 
 		cout << solve+1 << endl;
-		
+
 		for(int i = 0; i < solve; i++)
 			cout << p[res[i]].x << " " << p[res[i]].y << endl;
 		cout << p[0].x << " " << p[0].y << endl;
 	}
 	return 0;
 }
- */

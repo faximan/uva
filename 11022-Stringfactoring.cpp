@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-19.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <map>
 #include <algorithm>
@@ -18,7 +18,7 @@ bool same(int a, int b, string& s)
 {
 	if(s.length()-b < b-a)
 		return false;
-	
+
 	for(int i = 0; i < b-a; i++)
 		if(s[a+i] != s[b+i])
 			return false;
@@ -29,9 +29,9 @@ int solve(string s)
 {
 	if(m.count(s))
 		return m[s];
-	
+
 	int ma = s.length();
-	
+
 	for(int i = 0; i < s.length(); i++)
 		for(int j = i+1; j < s.length(); j++)
 		{
@@ -42,14 +42,14 @@ int solve(string s)
 			}
 			if(newstring != s)
 			{
-				int newvalue = solve(newstring.substr(0,i)) + 
+				int newvalue = solve(newstring.substr(0,i)) +
 								solve(newstring.substr(i, j-i)) +
 								solve(newstring.substr(j));
 				ma = min(ma, newvalue);
 			}
 		}
 	m[s] = ma;
-	return ma;	
+	return ma;
 }
 
 int main()
@@ -60,9 +60,9 @@ int main()
 		cin >> s;
 		if(s=="*")
 			break;
-		
+
 		cout << solve(s) << endl;
-		
+
 	}
 	return 0;
-}*/
+}

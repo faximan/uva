@@ -23,7 +23,7 @@ int main()
 		x2 = x1*(4-2*sqrt(3.0));
 		x3 = r*sqrt(3.0)/4.0;
 		x4 = (3*sqrt(28)-7*sqrt(3))/10*r;
-					
+
 		printf("%.10Lf %.10Lf %.10Lf %.10Lf\n", x1, x2, x3, x4);
 	}
 	return 0;

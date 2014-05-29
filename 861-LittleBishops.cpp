@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-22.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <stdio.h>
 using namespace std;
@@ -26,25 +26,25 @@ void solve(int posx, int posy, int nbr)
         solve(0, posy+1, nbr);
         return;
     }
-    
+
     if(posy == n)
     {
         return;
     }
-    
+
     if(d1[posx+posy] == 0 && d2[7-posx + posy] == 0)
     {
         d1[posx+posy] = 1;
         d2[7-posx+posy] = 1;
-        
+
         if(nbr+1 == k)
             res++;
         else
             solve(posx+1, posy, nbr+1);
-        
+
         d1[posx+posy] = 0;
         d2[7-posx+posy] = 0;
-    }    
+    }
     solve(posx+1, posy, nbr);
 }
 
@@ -52,7 +52,7 @@ unsigned long long solve()
 {
     if(dp[n][k])
         return dp[n][k];
-    
+
     if(k > 14)
         return 0;
     else if(n == 8 && k>= 6)
@@ -82,7 +82,7 @@ unsigned long long solve()
         else
             return 0;
     }
-    
+
     else if(k != 0)
     {
         res = 0;
@@ -96,16 +96,16 @@ unsigned long long solve()
 int main()
 {
     while(true)
-    {       
+    {
         scanf("%d %d", &n, &k);
-        
+
        if(n == 0 && k == 0)
             break;
-                
+
         unsigned long long res = solve();
         dp[n][k] = res;
         printf("%lld\n", res);
     }
-      
+
     return 0;
-}*/
+}

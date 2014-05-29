@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-13.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <vector>
 #include <iostream>
 
@@ -43,7 +43,7 @@ int main()
                     v.push_back(n/i);
             }
         }
-       
+
         int ans = 1;
         for (int i = 0; i < v.size(); i++) {
             for (int j = i+1; j < v.size(); j++) {
@@ -52,6 +52,6 @@ int main()
             }
         }
         cout << ans << endl;
-    }    
+    }
     return 0;
-}*/
+}

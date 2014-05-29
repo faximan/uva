@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-04-28.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <algorithm>
 
@@ -22,8 +22,8 @@ void dfs(string cur, int depth, int maxd)
 		cout << cur << endl;
 		return;
 	}
-	
-	for (int i = 0; i < maxd; i++) 
+
+	for (int i = 0; i < maxd; i++)
 	{
 		if(occ[i])
 			continue;
@@ -35,7 +35,7 @@ void dfs(string cur, int depth, int maxd)
 		}
 		if(found)
 			continue;
-		
+
 		occ[i] = 1;
 		char next = vars[i]+'a';
 		dfs(cur+next, depth+1, maxd);
@@ -58,13 +58,13 @@ int main()
 			}
 			occ[i] = 0;
 		}
-		
+
 		int j = 0;
 		for (int i = 0; i < s.length(); i++) {
 			if(s[i] != ' ')
 				vars[j++] = s[i]-'a';
 		}
-		
+
 		getline(cin, s);
 		for (int i = 0; i+2 < s.length(); i+=4) {
 			char a, c;
@@ -75,4 +75,4 @@ int main()
 		sort(vars,vars+j);
 		dfs("",0,j);
 	}
-}*/
+}

@@ -20,7 +20,7 @@ int lower_than()
 {
     int mmin = 0;
     int mmax = n-1;
-    
+
     while(true)
     {
         int mid = (mmin + mmax)/2;
@@ -36,26 +36,26 @@ int lower_than()
 int main()
 {
     scanf("%d", &n);
-    
+
     for(int i = 0; i < n; i++)
     {
         scanf("%d", &a[i]);
     }
-    
+
     scanf("%d", &q);
-    
+
     for (int i = 0; i < q; i++) {
         scanf("%d", &b);
-        
+
         int lower = lower_than();
         int upper = lower;
-        
+
         while(lower >= 0 && a[lower] >= b)
             lower--;
 
         while(upper < n && a[upper] <= b)
             upper++;
-        
+
         if(lower == -1)
             printf("X ");
         else
@@ -63,8 +63,8 @@ int main()
         if(upper >= n)
             printf("X\n");
         else
-            printf("%d\n", a[upper]);        
-        
-    }   
+            printf("%d\n", a[upper]);
+
+    }
     return 0;
 }

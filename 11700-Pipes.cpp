@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-05-20.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -24,19 +24,19 @@ bool doit(int curx, int cury)
 {
 	if (r == cury)
 		return true;
-	
+
 	for(int i = 0; i < 4; i++)
 	{
 		for(int j = 0; j < 4; j++)
 			n[cury][curx][j] = o[cury][curx][(j+i)%4];
-	
+
 		bool ok = true;
-		
+
 		for(int j = 0; j < 4; j++)
 		{
 			int newx = curx + dx[j];
 			int newy = cury + dy[j];
-			
+
 			if (newy < 0) //N
 			{
 				if (n[cury][curx][0])
@@ -46,7 +46,7 @@ bool doit(int curx, int cury)
 				}
 				continue;
 			}
-			
+
 			if (newx >= c) //E
 			{
 				if (n[cury][curx][1])
@@ -56,7 +56,7 @@ bool doit(int curx, int cury)
 				}
 				continue;
 			}
-			
+
 			if (newy >= r) //S
 			{
 				if (n[cury][curx][2])
@@ -66,7 +66,7 @@ bool doit(int curx, int cury)
 				}
 				continue;
 			}
-			
+
 			if (newx < 0) //W
 			{
 				if (n[cury][curx][3])
@@ -79,17 +79,17 @@ bool doit(int curx, int cury)
 
 			if(newx > curx || newy > cury)
 				continue;
-			
+
 			if (n[cury][curx][j] != n[newy][newx][(j+2)%4])
 			{
 				ok = false;
 				break;
 			}
 		}
-		
+
 		if (!ok)
 			continue;
-		
+
 		if((curx+1)%c==0)
 		{
 			if(doit(0,cury+1))
@@ -100,8 +100,8 @@ bool doit(int curx, int cury)
 			if(doit(curx+1, cury))
 				return true;
 		}
-		
-		if ((o[cury][curx][0] == 0 && 
+
+		if ((o[cury][curx][0] == 0 &&
 			 o[cury][curx][1] == 0 &&
 			 o[cury][curx][2] == 0 &&
 			 o[cury][curx][3] == 0)||
@@ -122,13 +122,13 @@ int main()
 		cin >> r >> c;
 		if(!r)
 			break;
-		
+
 		for(int i = 0; i < r; i++)
 			for(int j = 0; j < c; j++)
 			{
 				string s;
 				cin >> s;
-				
+
 				for(int k = 0; k < 4; k++)
 					o[i][j][k] = false;
 
@@ -144,12 +144,12 @@ int main()
 						o[i][j][3] = true;
 				}
 			}
-		
+
 		if (doit(0,0))
 			cout << "SOLVABLE" << endl;
-		else 
+		else
 			cout << "UNSOLVABLE" << endl;
 	}
-	
+
 	return 0;
-}*/
+}

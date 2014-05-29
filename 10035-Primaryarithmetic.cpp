@@ -16,24 +16,24 @@ int main(){
         cin >> a >> b;
         if(a == 0 && b == 0)
             break;
-        
+
         int res = 0;
         int carry = 0;
-        
+
         while(a > 0 || b > 0){
             int aa = a % 10;
             int bb = b % 10;
-            
+
             if(aa + bb + carry > 9){
                 carry = 1;
                 res++;
             }else
                 carry = 0;
-                
+
             a /= 10;
             b /= 10;
         }
-        
+
         if(res == 0)
             cout << "No carry operation." << endl;
         else if (res == 1)

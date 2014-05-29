@@ -18,7 +18,7 @@ long long int fib(long long int n, long long int m)
 {
     if(mymap.count(n))
         return mymap[n];
-    
+
     long long int res;
     if (n % 2 == 0)
     {
@@ -48,5 +48,5 @@ int main()
         mymap[1]=1;
         cout << fib(n,(long long int)pow(2,m)) << endl;
     }
-    return 0;    
+    return 0;
 }

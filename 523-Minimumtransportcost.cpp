@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-03-08.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <stdio.h>
 #include <queue>
@@ -32,7 +32,7 @@ bool ShortestPath(int source, int dest)
 		prev[i] = -1; // -1 at end if not on the path to dest
 	}
 	cost[source] = 0;
-    
+
 	priority_queue<elem, vector<elem>, greater<elem> > pq;
 	pq.push(elem(0, source));
 	while(!pq.empty())
@@ -76,11 +76,11 @@ int main()
 {
     int c;
     cin >> c;
-    for (int i = 0; i < c; i++) 
+    for (int i = 0; i < c; i++)
     {
         numv = 0;
         char ch;
-        
+
         while(true) // read first line to find n
         {
             scanf("%d%c", &weight[1][++numv], &ch);
@@ -89,7 +89,7 @@ int main()
             if(ch == '\n')
                 break;
         }
-        
+
         for(int i = 2; i <= numv; i++) //read rest of the lines
             for(int j = 1; j <= numv; j++)
             {
@@ -97,25 +97,25 @@ int main()
                 if(weight[i][j] == -1)
                     weight[i][j] = INF;
             }
-        
+
         for(int i = 1; i <= numv; i++)
             scanf("%d", &tax[i]);
-        
-        char line[1000]; 
+
+        char line[1000];
         while (getchar() != '\n');
-        while (fgets(line, 1000, stdin) && sscanf(line, "%d%d", &from, &to) == 2) 
-        { 
+        while (fgets(line, 1000, stdin) && sscanf(line, "%d%d", &from, &to) == 2)
+        {
             cout << "From " << from << " to " << to << " :" << endl;
             if(from == to)
-                cout << "Path: " << from << endl << "Total cost : 0" << endl;   
+                cout << "Path: " << from << endl << "Total cost : 0" << endl;
             else
-            {            
+            {
                 ShortestPath(from, to);
                 cout << "Path: ";
                 print_path(to);
-                cout << endl << "Total cost : " << cost[to] - tax[to] << endl;   
+                cout << endl << "Total cost : " << cost[to] - tax[to] << endl;
             }
-        } 
+        }
     }
     return 0;
-}*/
+}

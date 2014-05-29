@@ -45,13 +45,13 @@ int main()
     string s;
     getline(cin, s);
     getline(cin, s);
-    
+
     for (int i = 0; i < cases; i++) {
         if(i)
             cout << endl;
-        
+
         n = 0;
-        
+
         while(getline(cin, s) && s != "")
         {
             double x,y;
@@ -59,9 +59,9 @@ int main()
             in >> x >> y;
             xx[n] = x;
             yy[n++] = y;
-            
-        }  
-               
+
+        }
+
         if(n < 2)
         {
             cout << n << endl;
@@ -71,14 +71,14 @@ int main()
         int best = 1;
         for (int i = 0; i < n; i++) {
             for (int j = i+1; j < n;j++) {
-                
+
                 double q = sqrt((xx[i]-xx[j])*(xx[i]-xx[j]) + (yy[i]-yy[j])*(yy[i]-yy[j]));
                 if(q > 5.0 + EPS)
                     continue;
-                
+
                 double mx = (xx[i]+xx[j])/2.0;
                 double my = (yy[i]+yy[j])/2.0;
-                
+
                 if(abs(q,5.0) < EPS)
                     best = max(best, 2+count(i, j, mx, my));
                 else
@@ -86,13 +86,13 @@ int main()
                     double square = sqrt(2.5*2.5 - (q/2.0)*(q/2.0));
                     double sx = square * (yy[i]-yy[j])/q;
                     double sy = square * (xx[j]-xx[i])/q;
-                    
+
                     best = max(best, 2+count(i, j, mx+sx, my+sy));
                     best = max(best, 2+count(i, j, mx-sx, my-sy));
                 }
             }
         }
-        cout << best << endl;           
+        cout << best << endl;
     }
         return 0;
 }

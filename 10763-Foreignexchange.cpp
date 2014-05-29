@@ -26,7 +26,7 @@ int main()
 			cin >> a >> b;
 			s[make_pair(a,b)]++;
 		}
-		
+
 		bool ok = true;
 		map<pair<int, int>, int>::iterator it;
 		for(it = s.begin(); it!=s.end(); it++)
@@ -36,7 +36,7 @@ int main()
 			if(s[next] != s[cur])
 				ok = false;
 		}
-		
+
 		if(ok)
 			cout << "YES" << endl;
 		else

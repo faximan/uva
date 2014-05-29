@@ -10,11 +10,11 @@
 
 using namespace std;
 
-int phi(int x) 
+int phi(int x)
 {
     int ret = 1;
     int pow;
-    
+
     for (int i = 2; x != 1; i++) {
         pow = 1;
         while (!(x%i)) {
@@ -29,11 +29,11 @@ int phi(int x)
 int main()
 {
     int n;
-    
+
     long long gcder[50001];
-        
+
     gcder[1] = 1;
-    
+
     for (int i = 2; i <= 50000; i++)
         gcder[i] = gcder[i-1]+2*phi(i);
 
@@ -41,7 +41,7 @@ int main()
     {
         cin >> n;
         if(n==0) break;
-        
+
         cout << gcder[n] << endl;
     }
 

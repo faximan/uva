@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2012-02-21.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -28,13 +28,13 @@ int main()
         for (int j = 0; j < n; j++) {
             char stone, temp;
             long long length;
-            
+
             while(true)
             {
                 cin >> stone;
                 if(stone == 'B' || stone == 'S') break;
             }
-            
+
             cin >> temp >> length;
             a.push_back(length);
             if(stone == 'B')
@@ -42,7 +42,7 @@ int main()
         }
         a.push_back(d);
         a.push_back(d);
-        
+
         long long best = 0;
         for (int j = 0; j+2 < a.size(); j+=2) {
             best = max(best, a[j+2]-a[j]);
@@ -53,4 +53,4 @@ int main()
         cout << "Case " << i << ": " << best << endl;
     }
     return 0;
-}*/
+}

@@ -47,7 +47,7 @@ int main()
 					grid[i][j] = true;
 				secondgrid[i][j] = grid[i][j];
 			}
-		
+
 		int mi = 0x7FFFFFFF;
 		vector<bool> v(10, false);
 		for(int i = 0; i < 1024; ++i)
@@ -55,7 +55,7 @@ int main()
 			for(int i = 0; i < 10; i++)
 				for(int j = 0; j < 10; j++)
 					grid[i][j] = secondgrid[i][j];
-			
+
 			for(vector<bool>::iterator it = v.begin(); it != v.end(); ++it)
 			{
 				if(*it)
@@ -65,7 +65,7 @@ int main()
 					break;
 				}
 			}
-				
+
 			int current = 0;
 			for(int j = 0; j < 10; j++)
 				if(v[j])
@@ -82,7 +82,7 @@ int main()
 						current++;
 					}
 				}
-						
+
 				bool ok = true;
 				for(int j = 0; j < 10; j++)
 					if(grid[9][j])
@@ -90,12 +90,12 @@ int main()
 				if(ok)
 					mi = min(mi, current);
 			}
-			
+
 		cout << s << " ";
 		if(mi <= 100)
 			cout << mi << endl;
 		else
-			cout << "-1" << endl;		
+			cout << "-1" << endl;
 	}
 	return 0;
 }

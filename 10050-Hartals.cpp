@@ -24,7 +24,7 @@ int main()
             cin >> h[i];
             d[i] = 0;
         }
-        
+
         int res = 0;
         cur = 5;
         for (int i = 0; i < N; i++) {

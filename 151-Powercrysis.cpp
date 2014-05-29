@@ -5,7 +5,7 @@
 //  Created by Alexander Faxå on 2011-12-03.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-/*
+
 #include <iostream>
 
 using namespace std;
@@ -17,7 +17,7 @@ bool solve(int m)
     int a[n];
     for(int i = 0; i < n; i++)
         a[i] = 0;
-    
+
     int cnt = 1;
     int cur = 0;
     a[0] = 1;
@@ -33,7 +33,7 @@ bool solve(int m)
         a[cur] = 1;
         cnt++;
     }
-    return cnt == n;    
+    return cnt == n;
 }
 
 int main(){
@@ -41,13 +41,13 @@ int main(){
         cin >> n;
         if(n == 0)
             break;
-        
+
         int res = 1;
         while(!solve(res))
             res++;
-        
+
         cout << res << endl;
        }
-    
+
     return 0;
-}*/
+}

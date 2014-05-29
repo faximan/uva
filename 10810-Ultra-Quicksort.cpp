@@ -19,10 +19,10 @@ long long swaps;
 void merge(int l, int middle, int r)
 {
     long long temp[(r-l)+1];
-    
+
     int index1 = l;
     int index2 = middle +1;
-    
+
     int curel = 0;
     while(true)
     {
@@ -32,7 +32,7 @@ void merge(int l, int middle, int r)
         {
             temp[curel++] = a[index2];
             index2++;
-            
+
             if(index1 <= middle)
                 swaps += (middle-index1)+1;
         }
@@ -42,7 +42,7 @@ void merge(int l, int middle, int r)
             index1++;
         }
     }
-    
+
     for (int i = 0; i < (r-l)+1; i++) {
         a[l+i] = temp[i];
     }
@@ -52,31 +52,31 @@ void merge(int l, int middle, int r)
 void merge_sort(int l, int r)
 {
     int middle = (l+r)/2;
-    
+
     if(r-l > 1)
     {
         merge_sort(l, middle);
         merge_sort(middle+1,r);
     }
-    merge(l, middle, r);  
+    merge(l, middle, r);
 }
 
 int main()
 {
     int n;
-    while (true) 
+    while (true)
     {
         cin >> n;
         if(n == 0) break;
-        
+
         for (int i = 0; i < n; i++) {
             cin >> a[i];
         }
-               
+
         swaps = 0;
-        merge_sort(0, n-1);       
+        merge_sort(0, n-1);
 
         cout << swaps << endl;
-    }    
+    }
     return 0;
 }

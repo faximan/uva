@@ -43,7 +43,7 @@ bool ShortestPath(double maxTemp, bool first)
 {
     vertex* source = &v[s];
     vertex* dest = &v[t];
-    
+
 	for(int i = 0; i < numv; ++i)
 	{
         v[i].index = i;
@@ -52,10 +52,10 @@ bool ShortestPath(double maxTemp, bool first)
         else
             v[i].weight = INF;
 		v[i].prev = 0; // 0 at end if not on the path to dest
-    } 
+    }
 	source->weight = 0.0;
     source->temp = 0.0;
-    
+
 	priority_queue<elem, vector<elem>, greater<elem> > pq;
 	pq.push(elem(0.0, source));
 	while(!pq.empty())
@@ -63,14 +63,14 @@ bool ShortestPath(double maxTemp, bool first)
 		elem ce = pq.top();
 		vertex* cur = ce.second;
 		pq.pop();
-	
+
         if((first && (ce.first - cur->temp > EPS || ce.first - cur->temp < -EPS) ) || (!first && (ce.first - cur->weight > EPS || ce.first - cur->weight < -EPS)))
 			continue; // Already processed
-		
-        
+
+
         if(cur == dest)
 			return true;
-		for(vector<edge>::iterator it = cur->out.begin(); 
+		for(vector<edge>::iterator it = cur->out.begin();
             it != cur->out.end(); ++it) // Go through the edges
 		{
 			double newCost;
@@ -82,8 +82,8 @@ bool ShortestPath(double maxTemp, bool first)
                 if(it->temp > maxTemp)
                     newCost = INF;
             }
-                
-                
+
+
 			if((first && newCost < it->to->temp) || (!first && newCost < it->to->weight))
 			{
                 if(first)
@@ -105,7 +105,7 @@ void print_road(int cur)
         printf("%d", s+1);
         return ;
     }
-    
+
     print_road(v[cur].prev->index);
     printf(" %d", cur+1);
 }
@@ -118,7 +118,7 @@ int main()
             v[i].out.clear();
             v[i].prev = 0;
         }
-        
+
         cin >> s >> t;
         s--; t--;
         edge e;
@@ -136,11 +136,11 @@ int main()
         }
         ShortestPath(-1, true);
         ShortestPath(v[t].temp, false);
-        
+
         print_road(t);
-        printf("\n%0.1lf %0.1lf\n", v[t].weight, v[t].temp);        
+        printf("\n%0.1lf %0.1lf\n", v[t].weight, v[t].temp);
     }
-    
-    
+
+
     return 0;
 }

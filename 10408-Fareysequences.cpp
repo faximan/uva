@@ -20,7 +20,7 @@ set<double>s;
 struct factor
 {
     int n, t;
-    
+
     bool operator<(const factor& b) const
     {
         return t/(double)n < b.t/(double)b.n + EPS;
@@ -35,14 +35,14 @@ int main()
     {
         v.clear();
         s.clear();
-        
+
         factor f;
-        
+
         for (int i = 1; i < n; i++) {
             for (int j = i; j <= n; j++) {
                 f.t = i;
                 f.n = j;
-                
+
                 if(!s.count(i/(double)j))
                 {
                     v.push_back(f);
@@ -50,9 +50,9 @@ int main()
                 }
             }
         }
-        
+
         sort(v.begin(), v.end());
-        
+
         cout << v[k-1].t << "/" << v[k-1].n << endl;
     }
 }

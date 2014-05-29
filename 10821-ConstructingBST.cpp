@@ -49,7 +49,7 @@ int main()
 			printf(" Impossible.\n");
 			continue;
 		}
-		solve(0,n-1,h);			
+		solve(0,n-1,h);
 		cout << endl;
 	}
 	return 0;

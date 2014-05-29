@@ -42,6 +42,6 @@ int main()
 		indexet = 0;
 		print(0,n-1);
 		cout << endl;
-	}		
+	}
 	return 0;
 }
